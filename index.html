@@ -1,88 +1,31 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset='utf-8'>
-
-  <title>Deskperience/ScreenScraperSamples @ GitHub</title>
-
-  <style type="text/css">
-    body {
-      margin-top: 1.0em;
-      background-color: #ca544d;
-      font-family: Helvetica, Arial, FreeSans, san-serif;
-      color: #ffffff;
-    }
-    #container {
-      margin: 0 auto;
-      width: 700px;
-    }
-    h1 { font-size: 3.8em; color: #35abb2; margin-bottom: 3px; }
-    h1 .small { font-size: 0.4em; }
-    h1 a { text-decoration: none }
-    h2 { font-size: 1.5em; color: #35abb2; }
-    h3 { text-align: center; color: #35abb2; }
-    a { color: #35abb2; }
-    .description { font-size: 1.2em; margin-bottom: 30px; margin-top: 30px; font-style: italic;}
-    .download { float: right; }
-    pre { background: #000; color: #fff; padding: 15px;}
-    hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
-    .footer { text-align:center; padding-top:30px; font-style: italic; }
-  </style>
-</head>
-
-<body>
-  <a href="https://github.com/Deskperience/ScreenScraperSamples"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a>
-
-  <div id="container">
-
-    <div class="download">
-      <a href="https://github.com/Deskperience/ScreenScraperSamples/zipball/master">
-        <img border="0" width="90" src="https://github.com/images/modules/download/zip.png"></a>
-      <a href="https://github.com/Deskperience/ScreenScraperSamples/tarball/master">
-        <img border="0" width="90" src="https://github.com/images/modules/download/tar.png"></a>
-    </div>
-
-    <h1><a href="https://github.com/Deskperience/ScreenScraperSamples">ScreenScraperSamples</a>
-      <span class="small">by <a href="https://github.com/Deskperience">Deskperience</a></span></h1>
-
-    <div class="description">
-      ScreenScraper Samples
-    </div>
-
-    
-
-    
-
-    
-
-    
-
-    
-      <h2>Authors</h2>
-      <p>Andra Ciorici (andra.ciorici@deskperience.com)<br/>Daniel Sarca (daniel.sarca@deskperience.com)<br/>Marius Tirca (marius@deskperience.com)<br/>      </p>
-    
-
-    
-      <h2>Contact</h2>
-      <p>Deskperience Software (support@deskperience.com)<br/>      </p>
-    
-
-    <h2>Download</h2>
-    <p>
-      You can download this project in either
-      <a href="https://github.com/Deskperience/ScreenScraperSamples/zipball/master">zip</a> or
-      <a href="https://github.com/Deskperience/ScreenScraperSamples/tarball/master">tar formats.
-    </p>
-    <p>You can also clone the project with <a href="http://git-scm.com">Git</a>
-      by running:
-      <pre>$ git clone git://github.com/Deskperience/ScreenScraperSamples</pre>
-    </p>
-
-    <div class="footer">
-      get the source code on GitHub : <a href="https://github.com/Deskperience/ScreenScraperSamples">Deskperience/ScreenScraperSamples</a>
-    </div>
-
+---
+layout: layout
+title: "Eric Jones"
+---
+{% for post in site.posts offset: 0 limit: 50 %}
+<div class="row">
+  <div class="span7">    
+    <div class="row">
+      <div class="span2">
+        <a href="{{ post.url }}" >
+            <img border="0" width="250" height="150" src="/img/posts/{{ post.image }}" alt="">
+        </a>
+      </div>
+      <div class="span5">
+		<h4><strong><a href="{{ post.url }}">{{ post.title }}</a></strong></h4>      
+        <p>
+          {{ post.summary }}
+        </p>
+		<p>
+          <i class="icon-calendar"></i> {{ post.date | date: "%B %e, %Y" }}
+          | <i class="icon-comment"></i> <a href="http://erjjones.github.com{{ post.url }}#disqus_thread" data-disqus-identifier="{{ post.url }}"></a>     
+		  | <i class="icon-tags"></i> Tags :{% for tag in post.tags %} <a href="/tags/{{ tag }}" rel="tooltip" title="View posts tagged with &quot;{{ tag }}&quot;"><span class="label label-info">{{ tag }}</span></a>  {% if forloop.last != true %} {% endif %} {% endfor %}		            
+        </p>
+        <p><a href="{{ post.url }}">Read more</a></p>
+      </div>
+    </div>    
+	<hr>
   </div>
-
-</body>
-</html>
+</div>
+{% endfor %}	
+			
