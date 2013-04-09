@@ -25,18 +25,28 @@
 	<h1><b>UIPath Documentation page.</b></h1>
 
 	<div class="content_1">
-	 <input type=search name=s>
+	 <input type="search" name="s" id="input-query">
 
-<div class="button_2">
+	<div class="button_2" id="btn-q-knoledge">
 	 	<p><a href="#">Search Knowledge Base</a></p>
 
-	 </div>
+	</div>
 
 
-	 <div class="button_1">
+	<div class="button_1" id="btn-q-doc">
 	 	<p><a href="#">Search Documentation</a></p>
 
-	 </div>
+	</div>
+
+	<script>
+	document.getElementById ("btn-q-doc").addEventListener ("click", function () {
+		window.open ("https://google.com/search?q=" + document.getElementById ("input-query").value + " site:github.com/Deskover/UiPath/wiki", "_blank");
+	}, false);
+
+	document.getElementById ("btn-q-knoledge").addEventListener ("click", function () {
+		window.open ("http://support.deskover.com/categories/3440-UiPath-former-Screen-Scraper-Studio-/search?query=" + document.getElementById ("input-query").value, "_blank");
+	}, false);
+	</script>
 
 	 <div class="create">
 
