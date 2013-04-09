@@ -1,0 +1,168 @@
+body{
+	font-family: ubuntu;
+width: 1450px;
+margin: 0px auto;
+}
+.header ul{
+	
+	float: right;
+	list-style: none;
+	font-size: 21px;
+	margin-top: 33px;
+	margin-right: 100px;
+}
+.header ul li {
+	display: inline;
+	margin-right:70px;
+}
+
+.header img{
+	margin-left: 175px;
+	margin-top: 5px;
+}
+
+.header p{
+	float: right;
+	margin-right: 205px;
+	margin-top: 46px;
+}
+.header{
+
+}
+
+.doc{
+	color: #007bd4;
+}
+
+.logo_text{
+	width: 822px;
+}
+
+.content{
+width: 1440px;
+height: 2490px;
+background-color: #f5f5f5;
+margin-top: 10px;
+
+
+}
+
+.content h1{
+	text-align: center;
+	padding-top: 50px;
+}
+
+.content_1{
+	width: 997px;
+	height: 700px;
+	background-color: #ffffff;
+	margin: 0 auto;
+	margin-top: 70px;
+}
+
+input[type=search] { 	
+	padding: 5px;            
+	font-family: ubuntu;     
+	border: 1px solid black;  
+	background: white;          
+	line-height: 3;  
+	height: 55px; 
+	width: 940px;  
+	margin-top: 50px;
+	margin-left: 19px;
+	font-size: 25px;
+	border-radius: 10px;
+
+}      
+
+.button_1{
+background-image: url('img/button_l.png');
+background-repeat:no-repeat;
+height: 80px;
+margin-left: 19px;
+}
+
+.button_1 p{
+	font-size: 19px;
+	margin-left: 27px;
+	padding-top: 20px;
+}
+
+.button_2{
+	background-image: url('img/button_r.png');
+	background-repeat:no-repeat;
+	float: right;
+	margin-top: 20px;
+	height: 80px;
+	margin-right: 35px;
+	width: 257px;
+}
+
+.button_2 p{
+	font-size: 19px;
+	margin-left: 26px;
+	margin-top: 20px;
+}
+
+.content_1 h1{
+	font-size: 26px;
+	color: #636363;
+}
+
+.create{
+	float: left;
+	margin-left: 19px;
+}
+
+.recent{
+	
+}
+
+.create_1  li{
+	list-style: none;
+	color: #000000;
+	font-size: 24px;
+	margin-left: -40px;
+	line-height: 30px;
+
+}
+
+.create_1 li span{
+	color: #636363;
+	font-size: 18px;
+
+}
+
+.recent_1{
+	float: right;
+	list-style: none;
+	margin-top: 0px;
+	
+}
+
+.recent ul li{
+	
+	margin-right: 20px;
+	font-size: 16px;
+	color: #636363;
+	line-height: 45px;
+}
+
+.recent span{
+	color: #010101;
+	font-size: 21px;
+}
+
+.recent h1{
+	margin-left:528px
+}
+
+
+a:link    {color:#303033;}
+a:visited {color:#303033;}
+a:hover   {color:#007bd4;}
+a:active  {color:#303033;}
+                  
+
+a{text-decoration: none;}
+
