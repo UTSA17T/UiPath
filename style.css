@@ -4,7 +4,7 @@ width: 1450px;
 margin: 0px auto;
 }
 .header{
-	height: 90px;
+	height: 65px;
 }
 
 .header ul{
@@ -12,7 +12,7 @@ margin: 0px auto;
 	float: right;
 	list-style: none;
 	font-size: 21px;
-	margin-top: 50px;
+	margin-top: 45px;
 	margin-right: 154px;
 	font-family: ubuntu;
 	font-weight: bold;
@@ -25,7 +25,7 @@ margin: 0px auto;
 
 .header img{
 	margin-left: 220px;
-	margin-top: 15px;
+	margin-top: 7px
 }
 
 .header p{
