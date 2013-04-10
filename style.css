@@ -3,28 +3,37 @@ body{
 width: 1450px;
 margin: 0px auto;
 }
+.header{
+	height: 90px;
+}
+
 .header ul{
 	
 	float: right;
 	list-style: none;
 	font-size: 21px;
-	margin-top: 33px;
-	margin-right: 100px;
+	margin-top: 50px;
+	margin-right: 154px;
+	font-family: ubuntu;
+	font-weight: bold;
+
 }
 .header ul li {
 	display: inline;
-	margin-right:70px;
+	margin-right:67px;
 }
 
 .header img{
-	margin-left: 175px;
-	margin-top: 5px;
+	margin-left: 220px;
+	margin-top: 15px;
 }
 
 .header p{
 	float: right;
-	margin-right: 205px;
-	margin-top: 46px;
+	margin-right: 150px;
+	margin-top: -31px;
+	color: #696969;
+	font-size: 14px;
 }
 .header{
 
@@ -50,6 +59,19 @@ margin-top: 10px;
 .content h1{
 	text-align: center;
 	padding-top: 50px;
+	font-family: ubuntu, bold;
+	font-size: 36px;
+	
+}
+
+.content h2{
+     font-weight: lighter;
+     color: #999999;
+     font-size: 24px;
+     font-family: volkorn, regular;
+     margin-left: 650px;
+
+
 }
 
 .content_1{
@@ -83,9 +105,10 @@ margin-left: 19px;
 }
 
 .button_1 p{
-	font-size: 19px;
-	margin-left: 27px;
+	font-size: 21px;
+	margin-left: 17px;
 	padding-top: 20px;
+	font-weight: bold;
 }
 
 .button_2{
@@ -99,9 +122,10 @@ margin-left: 19px;
 }
 
 .button_2 p{
-	font-size: 19px;
-	margin-left: 26px;
+	font-size: 21px;
+	margin-left: 9px;
 	margin-top: 20px;
+	font-weight: bold;
 }
 
 .content_1 h1{
@@ -124,13 +148,18 @@ margin-left: 19px;
 	font-size: 24px;
 	margin-left: -40px;
 	line-height: 30px;
+	font-weight: bold;
+	line-height: 28px;
+	
 
 }
 
 .create_1 li span{
-	color: #636363;
+	color: #999999;
 	font-size: 18px;
+	font-weight: lighter;
 
+	font-family: volkorn;	
 }
 
 .recent_1{
@@ -144,17 +173,24 @@ margin-left: 19px;
 	
 	margin-right: 20px;
 	font-size: 16px;
-	color: #636363;
+	color: #999999;
 	line-height: 45px;
+	font-size: 16px;
+	font-weight: lighter;
+	font-family: volkorn;
 }
 
 .recent span{
 	color: #010101;
 	font-size: 21px;
+	font-weight: bold;
+	font-family: ubuntu;
 }
 
 .recent h1{
-	margin-left:528px
+	margin-left:528px;
+	font-weight: lighter;
+
 }
 
 
@@ -166,3 +202,12 @@ a:active  {color:#303033;}
 
 a{text-decoration: none;}
 
+.create h1{font-weight: lighter;
+}
+
+.create_1 li a:link {color: #000000;}
+.create_1 li a:hover  {color:#007bd4;}
+
+
+.recent .recent_1 li  .scr:hover  {color:#007bd4;}
+.recent .recent_1 li a:{color:#999999;};
