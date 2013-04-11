@@ -69,7 +69,7 @@ margin-top: 10px;
      color:#636363;
      font-size: 24px;
      font-family: volkorn, regular;
-     margin-left: 583px
+     margin-left: 647px
 
 
 }
@@ -103,6 +103,7 @@ background-image: url('img/button_l.png');
 background-repeat:no-repeat;
 height: 80px;
 margin-left: 19px;
+width: 256px;
 }
 
 .button_1 p{
@@ -167,33 +168,38 @@ margin-left: 19px;
 
 
 .recent_1{
-	float: right;
+	width: 460px;
 	list-style: none;
 	margin-top: 0px;
+	margin-left: 517px;
 	
 }
 
 .recent ul li{
-	
-	margin-right: 68px;
-	font-size: 16px;
-	color: #999999;
-	line-height: 45px;
-	font-size: 16px;
-	font-weight: lighter;
-	font-family: volkorn;
+
+	color: #010101;
+	font-size: 24px;
+	font-weight: bold;
+	font-family: ubuntu;
+	font-size: 24px;
+	line-height: 28px
 }
 
 .recent span{
-	color: #010101;
-	font-size: 21px;
-	font-weight: bold;
-	font-family: ubuntu;
+	margin-right: 68px;
+	color: #999999;
+	line-height: 16px;
+	font-weight: lighter;
+	font-family: volkorn;
+	font-size: 18px;
+	vertical-align: top;
+	
 }
 
 .recent h1{
-	margin-left:528px;
+	margin-left: 341px;
 	font-weight: lighter;
+	width: 493px;
 
 }
 
@@ -214,6 +220,4 @@ a{text-decoration: none;}
 
 recent .recent_1 li .scr a:{color:#999999;}
 .recent .recent_1 li  a:hover  {color:#007bd4;}
-.
-.content h2 a {color: #636363}
-.content h2 a:hover {color:#007bd4;}
+
