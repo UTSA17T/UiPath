@@ -5,13 +5,31 @@
 <link rel="stylesheet" href="style.css" type="text/css">
 <title>doc</title>
 </head>
+<script>
+function DeleteText(){
+	var inputObject = document.getElementById("input-query");
+	if (inputObject.value === "enter the search term"){
+		inputObject.value = "";
+	};
+
+}
+
+
+function SetText(){
+	var inputObject = document.getElementById("input-query");
+	if( inputObject.value === "")
+	{
+		inputObject.value = "enter the search term";
+	};
+}
+</script>
 
 <body>
 	<div class="header">
 <ul>
-<li><a href="#">Home</a></li>
-<li><a href="#">Blog</a></li>
-<li class="doc"><a href="#">Documentation</a></li>
+<li><a href="http://www.uipath.com/">Home</a></li>
+<li><a href="http://blog.uipath.com/">Blog</a></li>
+<li class="doc"><a href="https://github.com/Deskover/UiPath/wiki">Documentation</a></li>
 </ul>
 <div class="logo_text">
 <img src="img/logo.png">
@@ -21,12 +39,13 @@
 
 <div class="content">
 
-	<h1>UIPath Documentation page.</h1>
-	<h2>Lorem Ipsum.</h2>
+	<h1>UiPath documentation page</h1>
+	<h2> <a href=" https://github.com/Deskover/UiPath/wiki">Getting started with UiPath</a></h2>
 
 	<div class="content_1">
 	<form action="demo_form.asp">
-	 <input type="text" name="usrname" value="enter search term" id="input-query">
+	 <input type="text" name="usrname" value="enter the search term" id="input-query" onfocus="DeleteText()" onblur="SetText()">
+
 	</form>
 
 	<div class="button_2" id="btn-q-knoledge">
@@ -58,13 +77,13 @@
 
 	<li><a href="#">Getting started with UiPath</a></li>
 	<li> <span>Explore the documentation</span></li>
-	<li><a href="#">Video tutorials</a></li>
+	<li><a href="https://vimeo.com/deskover">Video tutorials</a></li>
 	<li><span>If it is your first time with UiPath start here</span></li>
-	<li><a href="#">API reference</a></li>
+	<li><a href=" https://github.com/Deskover/UiPath/wiki/Core-API-reference">API reference</a></li>
 	<li><span>Your ultimate guide to using API</span></li>
-	<li><a href="#">Discuss</a></li>
+	<li><a href=" http://support.deskover.com/categories/3440-screenscraper">Discuss</a></li>
 	<li><span>Get in touch with UiPath team and other developers</span></li>
-	<li><a href="#">Create a support ticket</a></li>
+	<li><a href="http://support.deskover.com/anonymous_requests/new">Create a support ticket</a></li>
 	<li><span>We hard at work but love to listen to your requests</span></li>
 
 	 </ul>
@@ -79,11 +98,11 @@
 	 <h1>Recent posts from blog</h1>
 	 <ul class="recent_1">
 
-	 	<li>15 mar-<span><a href="#">Workflow tutorial</a></span><a class="scr" href="#">-Scraping Web Data</a></li>
-	 	<li>15 mar-<span><a href="#">Workflow tutorial</a></span><a href="#">-Scraping Web Data</a></li>
-	 	<li>15 mar-<span><a href="#">Workflow tutorial</a></span><a href="#">-Scraping Web Data</a></li>
-	 	<li>15 mar-<span><a href="#">Workflow tutorial</a></span><a href="#">-Scraping Web Data</a></li>
-	 	<li>15 mar-<span><a href="#">Workflow tutorial</a></span><a href="#">-Scraping Web Data</a></li>
+	 	<li><span><a href="#">Workflow tutorial</a></span><a href="#">-Scraping Web Data</a></li>
+	 	<li><span><a href="#">Workflow tutorial</a></span><a href="#">-Scraping Web Data</a></li>
+	 	<li><span><a href="#">Workflow tutorial</a></span><a href="#">-Scraping Web Data</a></li>
+	 	<li><span><a href="#">Workflow tutorial</a></span><a href="#">-Scraping Web Data</a></li>
+	 	<li><span><a href="#">Workflow tutorial</a></span><a href="#">-Scraping Web Data</a></li>
 
 
 	 </ul>
