@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html>
 <head>
@@ -123,4 +124,119 @@ function SetText(){
   </div>
 </div>
 </body>
+=======
+<!DOCTYPE html>
+<html>
+<head>
+	<script type="text/javascript" async="" src="http://www.google-analytics.com/ga.js"></script>
+	<meta name="description" content="Screen scraping and UI automation software for desktop and web apps, Workflow to code in 1 click, 100% accuracy, extremely fast, excellent UI recognition">
+	<meta name="keywords" content="UiPath Studio, ui automation, screen scraping, web scraping, data scraping, text capture, workflow automation, web automation, report mining">
+	<link href='http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700,300italic,400italic,500italic,700italic' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="style.css" type="text/css">
+<title>doc</title>
+</head>
+<script>
+function DeleteText(){
+	var inputObject = document.getElementById("input-query");
+	if (inputObject.value === "enter the search term"){
+		inputObject.value = "";
+	};
+
+}
+
+
+function SetText(){
+	var inputObject = document.getElementById("input-query");
+	if( inputObject.value === "")
+	{
+		inputObject.value = "enter the search term";
+	};
+}
+</script>
+
+<body>
+	<div class="header">
+<ul>
+<li><a href="http://www.uipath.com/">Home</a></li>
+<li><a href="http://blog.uipath.com/">Blog</a></li>
+<li class="doc"><a href="https://github.com/Deskover/UiPath/wiki">Documentation</a></li>
+</ul>
+<div class="logo_text">
+	<a href="http://www.uipath.com/">
+<img src="img/logo.png">
+</a>
+</div>
+<p>Developers</p>
+</div>
+
+<div class="content">
+
+	<h1>Design with workflow, build with API</h1>
+	<h2>UiPath documentation</h2>
+
+	<div class="content_1">
+		<form action="demo_form.asp">
+		 <input type="text" name="usrname" value="enter the search term" id="input-query" onfocus="DeleteText()" onblur="SetText()">
+
+		</form>
+
+		<div class="button_2" id="btn-q-knoledge">
+		 	<p><a href="#">Search Knowledge Base</a></p>
+
+		</div>
+
+
+		<div class="button_1" id="btn-q-doc">
+		 	<p><a href="#">Search Documentation</a></p>
+
+		</div>
+
+		<script>
+		document.getElementById ("btn-q-doc").addEventListener ("click", function () {
+			window.open ("https://google.com/search?q=" + document.getElementById ("input-query").value + " site:github.com/Deskover/UiPath/wiki", "_blank");
+		}, false);
+
+		document.getElementById ("btn-q-knoledge").addEventListener ("click", function () {
+			window.open ("http://support.deskover.com/categories/3440-UiPath-former-Screen-Scraper-Studio-/search?query=" + document.getElementById ("input-query").value, "_blank");
+		}, false);
+		</script>
+
+	<div class="create">
+
+		<h1 >Create apps that integrate UiPath</h1>
+
+		<ul class="create_1">
+			<li><a href="https://github.com/Deskover/UiPath/wiki">Getting started with UiPath</a></li>
+			<li> <span>Explore the documentation</span></li>
+			<li><a href="https://vimeo.com/deskover">Video tutorials</a></li>
+			<li><span>If it is your first time with UiPath start here</span></li>
+			<li><a href=" https://github.com/Deskover/UiPath/wiki/Core-API-reference">API reference</a></li>
+			<li><span>Your ultimate guide to using API</span></li>
+			<li><a href=" http://support.deskover.com/categories/3440-screenscraper">Discuss</a></li>
+			<li><span>Get in touch with UiPath team and other developers</span></li>
+		</ul>
+
+
+		<a href="https://twitter.com/uipath" class="twitter-follow-button" data-show-count="false">Follow @uipath</a>
+		<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+		</script>
+		<div>
+			<script src="http://platform.linkedin.com/in.js" type="text/javascript"></script>
+			<script type="IN/CompanyProfile" data-id="1523656" data-format="hover" data-text="Deskover"></script>
+		</div>
+	</div>
+  <div class="recent">
+	 <h1>Get free support</h1>
+	 <ul class="recent_1">
+	 	<li><a href="http://uipath.com/webinar">Request 1:1 webinar</a></li>
+	 	<li><span>From ground to zenflow in 30 minutes</span></li>
+	 	<li><a href="http://uipath.com/workflow">Request 1 free automation workflow</a></li>
+	 	<li><span>Have an expert build a workflow per your specs</span></li>
+	 	<li><a href="http://support.deskover.com/anonymous_requests/new">Open a support ticket</a></li>
+	 	<li><span>We are hard at work but love to hear from you</span></li>
+	 </ul>
+  </div>
+</div>
+</body>
+>>>>>>> cc60cfbbf47a664e41a70f1e725668b4a9539697
 </html>
