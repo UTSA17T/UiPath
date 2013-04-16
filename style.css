@@ -1,15 +1,25 @@
 body{
 	font-family: ubuntu;
-width: 1450px;
-margin: 0px auto;
-background-color: #f5f5f5;
+	margin: 0px auto;
+	background-color: #f5f5f5;
 
 }
+#header_container{
+	width: 100%;
+	background-color: #ffffff;
+	text-align: center;
+	overflow: hidden;
+	border-bottom: 0px solid; 
+	background-size: cover;
+
+}
+
 .header{
 	background-color: #ffffff;
-	width: 1917px;
-	height: 94px;
-	margin-left: -233px;
+	width: 998px;
+	height: 120px;
+	margin: 0px auto;
+	
 }
 
 .header ul{
@@ -17,8 +27,7 @@ background-color: #f5f5f5;
 	float: right;
 	list-style: none;
 	font-size: 21px;
-	margin-top: 45px;
-	margin-right: 395px;
+	margin-top: 75px;
 	font-family: ubuntu;
 	font-weight: bold;
 
@@ -29,31 +38,25 @@ background-color: #f5f5f5;
 }
 
 .header img{
-	margin-left: 450px;
-	margin-top: 7px
+	margin-top: 7px;
+	border-color:transparent;
+	float: left;
+	margin: 40px 0 0 0;
 }
 
-.header p{
-	float: right;
-	margin-right: 240px;
-	margin-top: -31px;
-	color: #696969;
-	font-size: 14px;
-}
-.header{
-
-}
 
 .doc{
 	color: #007bd4;
 }
 
-.logo_text{
-	width: 822px;
+.logo_text span{
+	float: left;
+	color: #696969;
+	font-size: 14px;
+	margin: 83px 0 0 20px;
 }
 
 .content{
-width: 1440px;
 background-color: #f5f5f5;
 margin-top: 10px;
 
@@ -65,6 +68,7 @@ margin-top: 10px;
 	padding-top: 50px;
 	font-family: ubuntu, bold;
 	font-size: 36px;
+	margin: 0 auto;
 	
 }
 
@@ -73,7 +77,9 @@ margin-top: 10px;
      color:#636363;
      font-size: 24px;
      font-family: volkorn, regular;
-     margin-left: 586px;
+     margin: 0 auto;
+     text-align: center;
+     padding-top: 10px;
 
 
 }
@@ -84,6 +90,8 @@ margin-top: 10px;
 	background-color: #ffffff;
 	margin: 0 auto;
 	margin-top: 70px;
+	border: 1px solid rgb(190, 187, 187);
+	
 }
 
 input[type=text] { 	
@@ -227,5 +235,5 @@ recent .recent_1 li .scr a:{color:#999999;}
 
 .twitter-follow-button{
 	float: right;
-	margin-right: 270px;
+	margin-right: 180px;
 }
