@@ -86,6 +86,13 @@ function SetText(){
 		document.getElementById ("btn-q-knoledge").addEventListener ("click", function () {
 			window.open ("http://support.deskover.com/categories/3440-UiPath-former-Screen-Scraper-Studio-/search?query=" + document.getElementById ("input-query").value, "_blank");
 		}, false);
+
+		document.getElementById ("input-query").addEventListener ("keypress", function (e) {
+			if (e.keyCode === 13 /* the <Enter> key */) {
+				window.open ("https://google.com/search?q=" + this.value + " site:github.com/Deskover/UiPath/wiki", "_self");
+				e.preventDefault ();
+			}
+		}, false);
 		</script>
 
 	<div class="create">
