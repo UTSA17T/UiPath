@@ -30,8 +30,11 @@ body{
 	margin-top: 46px;
 	font-family: ubuntu;
 	font-weight: bold;
+	margin-right: -67px;
 
 }
+
+
 .header ul li {
 	display: inline;
 	margin-right:67px;
