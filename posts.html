@@ -8,7 +8,7 @@ title: "UiPath Blog"
     <div class="row">
       <div class="span2">
         <a href="{{ post.url }}" >
-            <img border="0" width="250" height="150" src="/img/help.png" alt="">
+            <img border="0" src="/img/help.png" alt="">
         </a>
       </div>
       <div class="span5">
@@ -18,7 +18,6 @@ title: "UiPath Blog"
         </p>
 		<p>
           <i class="icon-calendar"></i> {{ post.date | date: "%B %e, %Y" }}
-		  | <i class="icon-tags"></i> Tags :{% for tag in post.tags %} <a href="/tags/{{ tag }}" rel="tooltip" title="View posts tagged with &quot;{{ tag }}&quot;"><span class="label label-info">{{ tag }}</span></a>  {% if forloop.last != true %} {% endif %} {% endfor %}		            
         </p>
         <p><a href="{{ post.url }}">Read more</a></p>
       </div>
