@@ -1,0 +1,64 @@
+---
+layout: layout
+title: "UiNode.InjectAndRunJS - injecting JavaScript into web pages"
+---
+#Overview
+
+UiPath is a GUI-automation library which works on almost any UI framework from good old Win32 to WPF, Winforms, Java and HTML.
+
+Today we’ll talk about web automation, more precisely about  InjectAndRunJS method in UiPath library. The method does exactly what is says: injects JavaScript code into a web page and executes it and gets back a result. Then we’ll quickly touch some general web-automation topics and we’ll play with some JScript code samples.
+
+#Problem
+
+In today's web-centric world, automating the browser becomes more and more important. UiPath library provides full and consistent web-automation support for IE, Firefox and Chrome browsers.
+
+ With UiNode and UiBrowser library objects one can fully automate the browser. You can click any web control, fill out text, select items in combos and lists, extracting text and any HTML attribute value.
+
+ UiPath web automation is indeed very powerful but every automation step has a small performance cost because the automation code runs outside the browser process. Also, very complex web automation scenarios, there may be DOM things that are not (easily) available in UiPath library.
+
+ Here at Deskover we like to eat our own dog-food so we used InjectAndRunJS method to impelement other cool feature: ExtractData (which will be the subject of a future blog post).
+
+#How to
+ We’ll inject a script on google web page which alters the text of the search button and retrieves the original text.
+
+ Before getting into InjectAndRunJS we first need to have a UiNode object pointing to a web object. Here is how to start a IE browser and navigate to google search page:
+ 
+``` javascript
+var UI_BROWSER_IE = 1;
+var b = WScript.CreateObject("UiPath.UiBrowser");
+b.Start("http://www.google.com/", UI_BROWSER_IE);
+```
+
+Inside the browser we’re looking for “Google search” button:
+
+``` javascript
+var UI_FIND_DESCENDANTS = 1;
+var n = b.node.FindFirst(UI_FIND_DESCENDANTS, "<webctrl tag='button' name='btnK'/>");
+```
+
+It is time to inject some JavaScript code that changes the text button and retrieves the original one:
+
+``` javascript
+ var injectedJs = 
+"function(e, newTxt) { \
+    var oldTxt = e.innerText;\
+    e.innerText = newTxt;\
+    return oldTxt;\
+}";
+
+var r = n.InjectAndRunJS(injectedJs, "abc");
+WScript.Echo(r);
+```
+
+The injected code is provided as a string. Take care of quotes, apostrophe and escaping characters! You can also provide a filename containing the JavaScript code instead; the method will figure out by itself what its first parameters means.
+
+The injected code consists of one anonymous function. Its first parameter is the HTML element for which InjectAndRunJS method was called (in our case is the search button). The second parameter is a string that will be passed to injected code. The result is the value returned by injected function; in our case it is the original text of the search button.
+
+The code executes in the context of the web page. You have full access to DOM, window and document objects. In our case we have access to search button and we can modify its innerText while retrieving the original text.
+
+#Conclusions
+Injecting JavaScript code into web pages is a powerful and flexible web automation tool. You should use it when dealing with complex web automation scenario with tight performance requirements.
+
+I'll see you next time,
+
+Adrian.
