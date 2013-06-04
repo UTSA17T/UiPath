@@ -2,26 +2,26 @@
 layout: layout
 title: "UiNode.InjectAndRunJS - injecting JavaScript into web pages"
 ---
-#Overview
+##Overview
 
-UiPath is a GUI-automation library which works on almost any UI framework from good old Win32 to WPF, Winforms, Java and HTML.
+[UiPath]([http://www.uipath.com/) is a GUI-automation library which works on almost any UI framework from good old Win32 to WPF, Winforms, Java and HTML.
 
-Today we’ll talk about web automation, more precisely about  InjectAndRunJS method in UiPath library. The method does exactly what is says: injects JavaScript code into a web page and executes it and gets back a result. Then we’ll quickly touch some general web-automation topics and we’ll play with some JScript code samples.
+Today we’ll talk about web automation, more precisely about  [InjectAndRunJS](https://github.com/Deskover/UiPath/wiki/Uinode#wiki-InjectAndRunJS) method in UiPath library. The method does exactly what is says: injects JavaScript code into a web page and executes it and gets back a result. Then we’ll quickly touch some general web-automation topics and we’ll play with some JScript code samples.
 
-#Problem
+##Problem
 
 In today's web-centric world, automating the browser becomes more and more important. UiPath library provides full and consistent web-automation support for IE, Firefox and Chrome browsers.
 
- With UiNode and UiBrowser library objects one can fully automate the browser. You can click any web control, fill out text, select items in combos and lists, extracting text and any HTML attribute value.
+With [UiNode](https://github.com/Deskover/UiPath/wiki/Uinode) and [UiBrowser](https://github.com/Deskover/UiPath/wiki/UiBrowser) library objects one can fully automate the browser. You can click any web control, fill out text, select items in combos and lists, extracting text and any HTML attribute value.
 
- UiPath web automation is indeed very powerful but every automation step has a small performance cost because the automation code runs outside the browser process. Also, very complex web automation scenarios, there may be DOM things that are not (easily) available in UiPath library.
+UiPath web automation is indeed very powerful but every automation step has a small performance cost because the automation code runs outside the browser process. Also, very complex web automation scenarios, there may be DOM things that are not (easily) available in UiPath library.
 
- Here at Deskover we like to eat our own dog-food so we used InjectAndRunJS method to impelement other cool feature: ExtractData (which will be the subject of a future blog post).
+Here at [Deskover](http://www.deskover.com/) we like to eat our own dog-food so we used InjectAndRunJS method to impelement other cool feature: [ExtractData](https://github.com/Deskover/UiPath/wiki/Uinode#wiki-ExtractData) (which will be the subject of a future blog post).
 
-#How to
- We’ll inject a script on google web page which alters the text of the search button and retrieves the original text.
+##How to
+We’ll inject a script on google web page which alters the text of the search button and retrieves the original text.
 
- Before getting into InjectAndRunJS we first need to have a UiNode object pointing to a web object. Here is how to start a IE browser and navigate to google search page:
+Before getting into InjectAndRunJS we first need to have a UiNode object pointing to a web object. Here is how to start a IE browser and navigate to google search page:
  
 ``` javascript
 var UI_BROWSER_IE = 1;
@@ -35,8 +35,7 @@ Inside the browser we’re looking for “Google search” button:
 var UI_FIND_DESCENDANTS = 1;
 var n = b.node.FindFirst(UI_FIND_DESCENDANTS, "<webctrl tag='button' name='btnK'/>");
 ```
-
-It is time to inject some JavaScript code that changes the text button and retrieves the original one:
+You may wonder what the XML string is about. It is called [Selector](https://github.com/Deskover/UiPath/wiki/Selector) but do not worry, there are tools to generate it automatically. It is time now to inject some JavaScript code that changes the text button and retrieves the original one:
 
 ``` javascript
  var injectedJs = 
@@ -56,7 +55,7 @@ The injected code consists of one anonymous function. Its first parameter is the
 
 The code executes in the context of the web page. You have full access to DOM, window and document objects. In our case we have access to search button and we can modify its innerText while retrieving the original text.
 
-#Conclusions
+##Conclusions
 Injecting JavaScript code into web pages is a powerful and flexible web automation tool. You should use it when dealing with complex web automation scenario with tight performance requirements.
 
 I'll see you next time,
