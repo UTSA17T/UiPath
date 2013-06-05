@@ -29,7 +29,7 @@ First you are asked to select the first field which in our case is the book titl
 Actually you have to indicate TWO titles so we can programatically detect some data patterns.
 Let's say we select the first and second book. The result is probably not what you wanted (you want the whole thing and not only the first row).
 
-!["Extract Web Data"](../img/blog/extractdata1.png)
+!["Extract Web Data"](/img/blog/extractdata1.png)
 
 If you select the first and second book title of the first column you'll ended up with the first column as the result.
 Sometimes you have to play a little bit with the selection until you get it right. In our scenario you need to select two books that are not on the same column and row so the result is the whole table (diagonally).
