@@ -12,7 +12,7 @@ A lot of data is available online these days but you don't usually have access t
 Finance and stock info, real estate data, product catalogs, search engine results, social networks feeds, all come in various formats.
 Here is where UiPath comes to rescue. With its powerful (and yet easy to use) new workflow-based technology, it can automatically recognize the repeating patterns inside structured and tabular data.
 
-With no programming skills required, you can easily save web data in your favorite format: Excel, CSV, text or even directly deliver it to a database or web-service.
+With no programming skills required, you can easily save web data in your favorite format: *Excel*, *CSV*, text or even directly deliver it to a database or web-service.
 
 ##How to
 Usually the data you want to extract is not on the first page of the web site. You'll have to perform some login, search, navigation steps first.
@@ -38,23 +38,58 @@ When defining the next fields you have to use the same entities you used in step
 It's usually better to select objects at the beginning and the end of the table.
 
 If the structured data is actually a &lt;table&gt; object then the wizard will ask you to extract the whole table or not. In our case this approach won't work very well because we need title, author and prices as separated data (they are all in the same &lt;td&gt;).
-Anyway when asked, you should always give "extract whole table" option a try.
+Anyway when asked, you should always give **extract whole table** option a try.
 
-In rare scenarios not all data is extracted like inn google or amazon search results.
+In rare scenarios not all data is extracted like inn *Google* or *Amazon* search results.
 Promotional products, special offers or paid search results may look the same as the rest of the data but they have different internal HTML structure.
 You can define two extract data scenarios one for the regular data and another for special items.
 
-##Internals
+Once the wizard is complete you'll get a nice workflow that opens a browser, navigates to target page and extract the data.
+As a bonus, the wizard added a **Write CSV File** activity. The output of the extract activity (which is a good old .Net **DataTable**) is bounded to the input of the *CSV* activity.
 
+##Internals
+Now let's take a look at two of the *Extract Data* properties, **Selector** and **ExtractMetadata**. The selector specifies the parent element that contains all the data.
+It is the first ancestor that contains all selected fields. That's why when you select two books in the same row you get only one row of data and when you select diagonally you get the whole table.
+*ExtractMetadata* property is more interesting; it contains all the necessary data to recognize the fields. Here is how it looks like:
+
+```xml
+<extract>
+  <row exact="1">
+		<webctrl tag="tr"/>
+		<webctrl tag="td" class="thumbtext"/>
+		<webctrl tag="div" class="widthchange" idx="1"/>
+	</row>
+	<column exact="1" name="Column1" attr="text">
+		<webctrl tag="tr"/>
+		<webctrl tag="td" class="thumbtext"/>
+		<webctrl tag="div" class="widthchange" idx="1"/>
+		<webctrl tag="div" class="thumbheader" idx="1"/>
+		<webctrl tag="a" idx="1"/>
+	</column>
+	<column exact="1" name="Column2" attr="text">
+		<webctrl tag="tr"/>
+		<webctrl tag="td" class="thumbtext"/>
+		<webctrl tag="div" class="widthchange" idx="1"/>
+		<webctrl tag="div" class="AuthorName" idx="1"/>
+	</column>
+</extract>
+```
+It basically contains the description of the rows and columns and the path from parent container to each field object.
+The relevant attributes are: *tag name*, *class*, *id*, *name*, *text* and the *index* relative to parent (and relative to elements of the same tag and with the same attributes).
+You have to select two objects when defining a data field because only attributes with the same value are used to define a pattern.
+
+The XML also contain the column names as they will appear in the result *DataTable*, the information to extract (which can be *text* or *url*) and *exact* flag which tells if the paths in the HTML document can skip elements.
+You can manually edit the XML to get more or less data as needed.
 
 ##Conclusions
  * you have to select a field twice so the software can better analyze the internal HTML structure and define data patterns.
  * play with selection to get a row, a column or the whole thing
  * always use the same entities at each step to define all the fields
- * select at the top and bottom of the table
- * try "extract whole table" option if available
- * define additional "extract data" activities for special items that differs internally from the rest of the regular data
+ * select fields at the top and bottom of the table
+ * try *extract whole table* option if available
+ * define additional *extract data* activities for special items that differs internally from the rest of the regular data
  * as a last resort you can try to edit the XML selectors data to alter the result
+ * you can use the DataTable result as input for various other activities (writting to *Excel*, *CSV*, text files, database, web api).
 
 Until next time.
 
