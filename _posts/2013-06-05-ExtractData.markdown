@@ -4,9 +4,8 @@ title: "UiNode.Extract - extract structured data from web pages"
 ---
 ##Overview
 We are going to learn how to use the quite amazing "Extract Data" workflow activity in [UiPath]([http://www.uipath.com/).
-We'll explore various tricks with using the wizards and we'll get a little bit into the internals of [UiNode.ExtractData](https://github.com/Deskover/UiPath/wiki/Uinode#wiki-ExtractData) library method.
+We'll expose various tricks with using the wizards and we'll get a little bit into the internals of [UiNode.ExtractData](https://github.com/Deskover/UiPath/wiki/Uinode#wiki-ExtractData) library method.
 
-Disclaimer: I'm a [Deskoverian](http://www.deskover.com/) so my opinion might be heavilly biased.
 
 ##Problem
 A lot of data is available online these days but you don't usually have access to a web API to extract it.
