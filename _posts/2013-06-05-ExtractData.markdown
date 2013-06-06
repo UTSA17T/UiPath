@@ -78,7 +78,7 @@ It basically contains the description of the rows and columns and the path from 
 The relevant attributes are: *tag name*, *class*, *id*, *name*, *text* and the *index* relative to parent (and relative to elements of the same tag and with the same attributes).
 You have to select two objects when defining a data field because only attributes with the same value are used to define a pattern.
 
-The XML also contain the column names as they will appear in the result *DataTable*, the information to extract (which can be *text* or *url*) and *exact* flag which tells if the paths in the HTML document can skip elements.
+The XML also contains the column names as they will appear in the result *DataTable*, the information to extract (which can be *text* or *url*) and *exact* flag which tells if the paths in the HTML document can skip elements.
 You can manually edit the XML to get more or less data as needed.
 
 ##Conclusions
