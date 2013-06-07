@@ -4,9 +4,16 @@ title: "How to identify invisible UI controls using FindAll"
 ---
 #How to identify invisible UI controls using FindAll
 
+##Overview
 You may have come across the situation where you needed the [selector](https://github.com/Deskover/UiPath/wiki/Selector) of an invisible [UiNode](https://github.com/Deskover/UiPath/wiki/Uinode). [UiPath](https://github.com/Deskover/UiPath/wiki/Core-API-reference) enables you to select any UI control visible on screen, however you can't get the selector of a hidden element, even if you know that at some point it will become visible.
 
-Let's say that we have a WinForms application that has a hidden TextBox with the name "HiddenText" and we want to find it's selector. To achieve this, we start from the application's top-level window and search for the textbox.
+##Problem
+Let's say that we have a WinForms application that has a hidden TextBox with the name "HiddenText" and we want to find it's selector. 
+
+
+##How to
+
+To achieve this, we start from the application's top-level window and search for the textbox.
 
 First of all we need the selector of the top-level window. This can be optained using UiPath Studio and selecting the whole window. The generated selector should look like this:
 
@@ -28,6 +35,9 @@ Learn more about acceptable subsystem types [here](https://github.com/Deskover/U
 Next you need an attribute or a set of attributes of that uniquely identifies the UI control you are searching, like an ID, title, name or any other attribute. If you can't uniquely identify the UI control you can still use this method, but be aware that the result might contain several UiNodes with the attributes you provided and you should choose whether you keep one or all of them.
 
 In our case, the attribute that uniquely identifies the textbox is the ctrlname-attribute. To retrive the selector for 'HiddenText' TextBox we initialize a UiNode that represents the top-level window, let's call this the parent UiNode, and then search for all its children that have the subsystem type "wnd" and ctrlname = "HiddenText". You can find code samples for C++ and C# below.
+
+
+##Code Samples
 
 C++ code
 
@@ -135,3 +145,7 @@ public String GetInvisibleControlSelector()
 If you have more information about the UI control you are searching for you can improve the filter. Also, in the samples above you are looking through the whole UI hierarchy of the application by using [UiFindScope.UI_FIND_DESCENDANTS](https://github.com/Deskover/UiPath/wiki/Uinode#wiki-UiFindScope), but if you know for a fact that the control you search for is a direct children, you can minimize the execution time by using UiFindScope.UI_FIND_CHILDREN instead.
 
 You can learn more about FindAll method [here](https://github.com/Deskover/UiPath/wiki/Uinode#wiki-FindAll).
+
+Have a nice weekend,
+
+Andra
