@@ -10,7 +10,9 @@ When you install UiStudio, these extensions are automatically enabled in Chrome 
 
 In this article, we will learn how to enable these features for Chrome and Firefox by installing the browser extensions explicitly.
 
-##Google Chrome
+##Installing the Google Chrome extension
+
+###Manual installation
 Installing the UiPath extension for the Google Chrome browser is fairly easy. If you did it before, that is...
 
 OK, so here are the steps to enable the UiPath browser extension:
@@ -22,6 +24,19 @@ OK, so here are the steps to enable the UiPath browser extension:
     !["Chrome Step 2"](/img/blog/Chrome_step_2.jpg)
 
 3.  The Chrome extension is now successfully installed and you can automate Web pages in Chrome using UiPath.
+
+###Automated deployment
+If you want to deploy the Chrome extension with your product setup package, all you have to do is add the following registry content on the target machine:
+
+```
+Windows Registry Editor Version 5.00
+ 
+[Software\Google\Chrome\Extensions\mfbmkebgbbbcpfeppkndaicpmlgijlke]
+"path"="[INSTALLDIR]uiPathExt.crx"
+"version"="5.0.0"
+```
+
+*"[INSTALLDIR]"* is the target installation directory, for example *"c:\program files\AnySoft\AnyProduct\"*. If you are working with MSI packages, then the *"[INSTALLDIR]"* itself will point to the actual target directory.
 
 ##Mozilla Firefox
 The Firefox extension must be installed in a totally different manner: through Windows Registry files. For this operation, it is required that you have Administrator privileges enabled for your current Windows account.
