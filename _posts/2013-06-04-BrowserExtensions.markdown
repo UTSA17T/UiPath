@@ -38,7 +38,7 @@ Windows Registry Editor Version 5.00
 
 *"[INSTALLDIR]"* is the target installation directory, for example *"c:\program files\AnySoft\AnyProduct\"*. If you are working with MSI packages, then the *"[INSTALLDIR]"* itself will point to the actual target directory.
 
-#Mozilla Firefox
+#Installing the Mozilla Firefox extension
 The Firefox extension must be installed in a totally different manner: through Windows Registry files. For this operation, it is required that you have Administrator privileges enabled for your current Windows account.
 First, you have to know where UiPath is installed. Let's say it's in *"C:\Program Files\UiPath Studio\v6"*. Then the browser extension directory will be *"C:\Program Files\UiPath Studio\v6\BrowserExtensions"*. Considering these, we have the following REG file content:
 
@@ -51,6 +51,8 @@ Windows Registry Editor Version 5.00
 
 Copy this text content into the Clipboard and save it into a file named *"Install_UiPath_for_Firefox.REG"* (or any other suggestive name that you like) using a text editor, such as Notepad. Notice the blank line between *"Windows Registry Editor Version 5.00"* and the text that follows, it is important.
 Then, open it in Windows Explorer via double click or the *<Enter>* key and restart Firefox (if opened). This will merge the registry values contained by the file into the Windows Registry, thus enabling the UiPath extension in Firefox.
+
+This registry content can also be used in your setup package for deploying the UiPath Firefox extension on the target machine.
 
 
 That's it, we hope that UiPath is working now in Chrome and Firefox and that you are enjoying all the features in our product!
