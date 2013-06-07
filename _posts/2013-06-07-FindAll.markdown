@@ -2,10 +2,9 @@
 layout: layout
 title: "How to identify invisible UI controls using FindAll"
 ---
-#How to identify invisible UI controls using FindAll
 
 ##Overview
-You may have come across the situation where you needed the [selector](https://github.com/Deskover/UiPath/wiki/Selector) of an invisible [UiNode](https://github.com/Deskover/UiPath/wiki/Uinode). [UiPath](https://github.com/Deskover/UiPath/wiki/Core-API-reference) enables you to select any UI control visible on screen, however you can't get the selector of a hidden element, even if you know that at some point it will become visible.
+You may have come across the situation where you needed the [selector](https://github.com/Deskover/UiPath/wiki/Selector) of an invisible [UiNode](https://github.com/Deskover/UiPath/wiki/Uinode). [UiPath](http://www.uipath.com/) enables you to select any UI control visible on screen, however you can't get the selector of a hidden element, even if you know that at some point it will become visible.
 
 ##Problem
 Let's say that we have a WinForms application that has a hidden TextBox with the name "HiddenText" and we want to find it's selector. 
@@ -23,7 +22,8 @@ First of all we need the selector of the top-level window. This can be optained 
 
 As you might already know, a selector is actually an XML fragment specifying a few attributes and parents of the GUI element it identifies. If a UI control is on screen, visible or hidden, we can still define a selector for it and instantiate a UiNode object using that selector.
 
-Second thing you need to know is what subsystem is the UI control you are looking for. You can determine the subsystem of a UiNode by looking at the last tag of it's selector. We are currently using five subsystems : 
+Second thing you need to know is what subsystem is the UI control you are looking for. You can determine the subsystem of a UiNode by looking at the last tag of it's selector. We are currently using five subsystems: 
+
 - Win32               
 - ActiveAccesibility  
 - Java                
@@ -142,7 +142,7 @@ public String GetInvisibleControlSelector()
         
 ```
 
-If you have more information about the UI control you are searching for you can improve the filter. Also, in the samples above you are looking through the whole UI hierarchy of the application by using [UiFindScope.UI_FIND_DESCENDANTS](https://github.com/Deskover/UiPath/wiki/Uinode#wiki-UiFindScope), but if you know for a fact that the control you search for is a direct children, you can minimize the execution time by using UiFindScope.UI_FIND_CHILDREN instead.
+If you have more information about the UI control you are searching for you can improve the filter. Also, in the samples above you are looking through the whole UI hierarchy of the application by using [UiFindScope.UI\_FIND\_DESCENDANTS](https://github.com/Deskover/UiPath/wiki/Uinode#wiki-UiFindScope), but if you know for a fact that the control you search for is a direct children, you can minimize the execution time by using UiFindScope.UI_FIND_CHILDREN instead.
 
 You can learn more about FindAll method [here](https://github.com/Deskover/UiPath/wiki/Uinode#wiki-FindAll).
 

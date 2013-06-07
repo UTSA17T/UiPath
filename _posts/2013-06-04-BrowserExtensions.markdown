@@ -3,16 +3,16 @@ layout: layout
 title: "Installing the browser extensions in Chrome and Firefox"
 ---
 
-#Overview
+##Overview
 The UiPath browser extensions play a very important role in isolating and automating UI elements in Web pages. All the UiPath features, such as the visual selection, the UiNode object and all its live attributes, or the monitoring the user interaction through UiEvents, are only possible in browsers through these extensions.
 
 When you install UiStudio, these extensions are automatically enabled in Chrome and Firefox. However, you might want to know how to enable them manually, because problems may occur and you must know how to deal with them.
 
 In this article, we will learn how to enable these features for Chrome and Firefox by installing the browser extensions explicitly.
 
-#Installing the Google Chrome extension
+##Installing the Google Chrome extension
 
-##Manual installation
+###Manual installation
 Installing the UiPath extension for the Google Chrome browser is fairly easy. If you did it before, that is...
 
 OK, so here are the steps to enable the UiPath browser extension:
@@ -25,7 +25,7 @@ OK, so here are the steps to enable the UiPath browser extension:
 
 3.  The Chrome extension is now successfully installed and you can automate Web pages in Chrome using UiPath.
 
-##Automated deployment
+###Automated deployment
 If you want to deploy the Chrome extension with your product setup package, all you have to do is add the following registry content on the target machine:
 
 ```
@@ -38,7 +38,7 @@ Windows Registry Editor Version 5.00
 
 *"[INSTALLDIR]"* is the target installation directory, for example *"c:\program files\AnySoft\AnyProduct\"*. If you are working with MSI packages, then the *"[INSTALLDIR]"* itself will point to the actual target directory.
 
-#Installing the Mozilla Firefox extension
+##Installing the Mozilla Firefox extension
 The Firefox extension must be installed in a totally different manner: through Windows Registry files. For this operation, it is required that you have Administrator privileges enabled for your current Windows account.
 First, you have to know where UiPath is installed. Let's say it's in *"C:\Program Files\UiPath Studio\v6"*. Then the browser extension directory will be *"C:\Program Files\UiPath Studio\v6\BrowserExtensions"*. Considering these, we have the following REG file content:
 
