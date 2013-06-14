@@ -52,19 +52,19 @@ This section will help you deploy the UiPath Chrome extension under a different 
 5.	Now that the extension is rebranded, it will have to be re-packaged into a new CRX file. For that, you will have to go to the *Extensions* page in Chrome, as described in the **Manual installation** section. Then, you will press the *Pack extension...* button and you will see the following screen:
 	!["Chrome Rebranding 1"](/img/blog/Chrome_rebranding_1.jpg)
 
-6.	In the **Extension root directory** field, you must write the path to your rebrander extension files. In our example, it's the *"c:\temp\myChromeExt"* from step 2.
+6.	In the **Extension root directory** field, you must write the path to your rebranded extension files. In our example, it's the *"c:\temp\myChromeExt"* directory from step 2.
 
 7.	You do not have a **Private key file** yet. Leave this field blank for now, this will tell Google Chrome that you need such a file and it will create one for you.
 
 8.	Click the **Pack Extension** button. Google Chrome will respond with a dialog that looks like this:
 	!["Chrome Rebranding 2"](/img/blog/Chrome_rebranding_2.jpg)
 
-9. 	The CRX file is the your rebranded Chrome extension. The PEM file is the private key and you must keep it, it uniquely identifies your extension. Next time you pack your extension, fill in the **Private key file** field at step 7 with the path to the PEM file.
+9. 	The CRX file is the rebranded Chrome extension. The PEM file is the private key and you must keep it, it uniquely identifies your extension. Next time you pack your extension, fill in the **Private key file** field at step 7 with the path to the PEM file.
 
 10.	Now that you have the private key (PEM) file, you can pack the Chrome extension automatically using this command line:
 
 ```
-<Path_to_Chrome..exe> --pack-extension=<Path_to_extension_directory> --pack-extension-key=<Path_to_private_key_file>
+<Path_to_Chrome.exe> --pack-extension=<Path_to_extension_directory> --pack-extension-key=<Path_to_private_key_file>
 ```
 
 *Example:*
@@ -99,27 +99,27 @@ This section will help you change the name and the company under which the UiPat
 
 1.	Go to the *"BrowserExtensions"* subdirectory in the UiPath installation directory and you will find the Firefox extension, consisting the following files and drectories: 
 
-	* The *"chrome"* directory. 
+* The *"chrome"* directory. 
 	
-	* The *"plugins"* directory. 
+* The *"plugins"* directory. 
 	
-	* The *"chrome.manifest"* file. 
+* The *"chrome.manifest"* file. 
 	
-	* The *"install.rdf"* file. 
+* The *"install.rdf"* file. 
 	
 Take all those files and copy them somewhere else. Let's say for example that we copy them in *"c:\temp\myFirefoxExt"*.
 
 2.	Open the *"install.rdf"* file in a text editor. You will notice it's written in the XML format. Here are the important sections:
 
-	* **em:id** - it's the identifier of your extension. For UiPath, it's *info@uipath.com*. Let's say for example that your identifier is *steve@devs.com*.
+* **em:id** - it's the identifier of your extension. For UiPath, it's *info@uipath.com*. Let's say for example that your identifier is *steve@devs.com*.
 	
-	* **em:name** - the name of your extension.
+* **em:name** - the name of your extension.
 	
-	* **em:creator** - the name of your company.
+* **em:creator** - the name of your company.
 	
-	* **em:description** - just a brief description of your Firefox extension.
+* **em:description** - just a brief description of your Firefox extension.
 	
-	* under the **em:targetApplication** section, you will find another XML entry named **em:id**. That string is a *globally unique identifier* (GUID) and it's a unique characteristic of your extension. You will have to generate another one for making sure that you have a one-of-a-kind extension.
+* under the **em:targetApplication** section, you will find another XML entry named **em:id**. That string is a *globally unique identifier* (GUID) and it's a unique characteristic of your extension. You will have to generate another one for making sure that you have a one-of-a-kind extension.
 	
 3.	For deploying your newly rebranded extension, you will need to generate a registry file similar to the one in the **Installation** section. Considering our example where the identifier of your extension is *steve@devs.com*, the REG file used for deployment should look like this:
 
