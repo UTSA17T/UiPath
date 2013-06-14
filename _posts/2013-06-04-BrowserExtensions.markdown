@@ -99,27 +99,27 @@ This section will help you change the name and the company under which the UiPat
 
 1.	Go to the *"BrowserExtensions"* subdirectory in the UiPath installation directory and you will find the Firefox extension, consisting the following files and drectories: 
 
-* The *"chrome"* directory. 
-	
-* The *"plugins"* directory. 
-	
-* The *"chrome.manifest"* file. 
-	
-* The *"install.rdf"* file. 
+	* The *"chrome"* directory. 
+		
+	* The *"plugins"* directory. 
+		
+	* The *"chrome.manifest"* file. 
+		
+	* The *"install.rdf"* file. 
 	
 Take all those files and copy them somewhere else. Let's say for example that we copy them in *"c:\temp\myFirefoxExt"*.
 
 2.	Open the *"install.rdf"* file in a text editor. You will notice it's written in the XML format. Here are the important sections:
 
-* **em:id** - it's the identifier of your extension. For UiPath, it's *info@uipath.com*. Let's say for example that your identifier is *steve@devs.com*.
-	
-* **em:name** - the name of your extension.
-	
-* **em:creator** - the name of your company.
-	
-* **em:description** - just a brief description of your Firefox extension.
-	
-* under the **em:targetApplication** section, you will find another XML entry named **em:id**. That string is a *globally unique identifier* (GUID) and it's a unique characteristic of your extension. You will have to generate another one for making sure that you have a one-of-a-kind extension.
+	* **em:id** - it's the identifier of your extension. For UiPath, it's *info@uipath.com*. Let's say for example that your identifier is *steve@devs.com*.
+		
+	* **em:name** - the name of your extension.
+		
+	* **em:creator** - the name of your company.
+		
+	* **em:description** - just a brief description of your Firefox extension.
+		
+	* under the **em:targetApplication** section, you will find another XML entry named **em:id**. That string is a *globally unique identifier* (GUID) and it's a unique characteristic of your extension. You will have to generate another one for making sure that you have a one-of-a-kind extension.
 	
 3.	For deploying your newly rebranded extension, you will need to generate a registry file similar to the one in the **Installation** section. Considering our example where the identifier of your extension is *steve@devs.com*, the REG file used for deployment should look like this:
 
