@@ -85,14 +85,14 @@ This registry content can also be used in your setup package for deploying the U
 ###Rebranding
 This section will help you change the name and the company under which the UiPath extension will be listed in Mozilla Firefox.
 
-1. Go to the *"BrowserExtensions"* subdirectory in the UiPath installation directory and you will find the Firefox extension, consisting the following files and drectories: 
+1. Go to the *"BrowserExtensions"* subdirectory in the UiPath installation directory and you will find the Firefox extension, consisting of the following files and directories: 
   * The *"chrome"* directory. 
   * The *"plugins"* directory. 
   * The *"chrome.manifest"* file. 
   * The *"install.rdf"* file. 
-  Take all those files and copy them somewhere else. Let's say for example that we copy them in *"c:\temp\myFirefoxExt"*.
-2. Open the *"install.rdf"* file in a text editor. You will notice it's written in the XML format. Here are the important sections:
-  * **em:id** - it's the identifier of your extension. For UiPath, it's *info@uipath.com*. Let's say for example that your identifier is *steve@devs.com*.
+  Take all those files and copy them somewhere else, into a temporary directory. Let's say for example that we copy them in *"c:\temp\myFirefoxExt"*.
+2. Open the *"install.rdf"* file in a text editor. You will notice that it's written in the XML format. Here are the important sections:
+  * **em:id** - it's the string identifier of your extension. For UiPath, it's *info@uipath.com*. Let's say for example that your string identifier is *steve@devs.com*.
   * **em:name** - the name of your extension.
   * **em:creator** - the name of your company.
   * **em:description** - just a brief description of your Firefox extension.
