@@ -60,6 +60,11 @@ This section will help you deploy the UiPath Chrome extension under a different 
     ```
     "C:\programs\chrome.exe" --pack-extension="c:\temp\myChromeExt" --pack-extension-key="c:\temp\myChromeExt.pem"
     ```
+	
+###Troubleshooting
+Sometimes, the automatic installation of the Chrome extension may fail. You will notice this through the fact that the on-screen selection will not work in Chrome after the installation. 
+
+A very common cause for this problem is the manual removal of the UiPath extension from the list. Whenever you remove an extension explicitly, Chrome stores its identifier into a "black list", which prevents the extension from re-installing itself automatically. The solution is to re-install it manually via drag-and-drop, like we described above in the **Manual installation** section.
 
 ##Installing the Mozilla Firefox extension
 
