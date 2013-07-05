@@ -17,7 +17,7 @@ body{
 .header{
 	background-color: #ffffff;
 	width: 998px;
-	height:94px;
+	height:90px;
 	margin: 0px auto;
 	
 }
@@ -27,7 +27,7 @@ body{
 	float: right;
 	list-style: none;
 	font-size: 21px;
-	margin-top: 46px;
+	margin-top: 52px;
 	font-family: ubuntu;
 	font-weight: bold;
 	margin-right: -67px;
@@ -44,7 +44,7 @@ body{
 	margin-top: 7px;
 	border-color:transparent;
 	float: left;
-	margin: 10px 0 0 0;
+	margin: 25px 0 0 0;
 }
 
 
@@ -56,7 +56,7 @@ body{
 	float: left;
 	color: #696969;
 	font-size: 14px;
-	margin: 54px 0 0 20px;
+	margin: 59px 0 0 20px;
 }
 
 .content{
@@ -152,7 +152,7 @@ width: 256px;
 
 .create{
 	float: left;
-	margin-left: 19px;
+	margin-left: 5px;
 }
 
 .recent{
@@ -163,7 +163,7 @@ width: 256px;
 	list-style: none;
 	color: #000000;
 	font-size: 24px;
-	margin-left: -40px;
+	margin-left: -20px;
 	line-height: 30px;
 	font-weight: bold;
 	line-height: 28px;
@@ -177,7 +177,7 @@ width: 256px;
 	font-weight: lighter;
 
 	font-family: vollkorn;
-	line-height: 16px;
+	line-height: 25px;
 	vertical-align: top;;
 }	
 
@@ -185,7 +185,7 @@ width: 256px;
 .recent_1{
 	width: 460px;
 	list-style: none;
-	margin-top: 0px;
+	margin-top: 13px;
 	margin-left: 517px;
 	
 }
@@ -214,7 +214,7 @@ width: 256px;
 .recent h1{
 	margin-left: 398px;
 	font-weight: lighter;
-	width: 493px;
+	width: 478px;
 
 }
 
@@ -239,4 +239,8 @@ recent .recent_1 li .scr a:{color:#999999;}
 .twitter-follow-button{
 	float: right;
 	margin-right: 180px;
+}
+
+.linkedin{
+	margin-left: 21px;
 }
