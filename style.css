@@ -89,7 +89,7 @@ margin-top: 10px;
 
 .content_1{
 	width: 997px;
-	height: 700px;
+	height:670px;
 	background-color: #ffffff;
 	margin: 0 auto;
 	margin-top: 45px;
@@ -103,36 +103,40 @@ input[type=text] {
 	border: 1px solid #999999;  
 	background: white;          
 	line-height: 50px; 
-	height: 60px; 
-	width: 940px;  
-	margin-top: 50px;
-	margin-left: 19px;
+	height: 45px;
+	width: 400px; 
+	margin-top: 30px;
+	margin-left: 20px;
 	font-size: 25px;
 	border-radius: 10px;
 	color: #747474;
 	vertical-align: middle;
-}  
+	float: left;
+}
+  
 
 .button_1{
-background-image: url('img/button_l.png');
+background-image: url('img/button_r.png');
 background-repeat:no-repeat;
-height: 80px;
-margin-left: 19px;
-width: 256px;
+height: 50px;
+float: right;;
+width:270px;
+margin-top: 30px;
 }
 
 .button_1 p{
 	font-size: 21px;
-	margin-left: 17px;
-	padding-top: 20px;
 	font-weight: bold;
+	text-align: center;
+	margin-right: 16px;	
+	margin-top: 12px;
 }
 
 .button_2{
 	background-image: url('img/button_r.png');
 	background-repeat:no-repeat;
 	float: right;
-	margin-top: 20px;
+	margin-top: 30px;
 	height: 80px;
 	margin-right: 35px;
 	width: 257px;
@@ -141,8 +145,8 @@ width: 256px;
 .button_2 p{
 	font-size: 21px;
 	margin-left: 9px;
-	margin-top: 20px;
 	font-weight: bold;
+	margin-top: 12px;
 }
 
 .content_1 h1{
@@ -152,7 +156,7 @@ width: 256px;
 
 .create{
 	float: left;
-	margin-left: 5px;
+	margin-top: 80px;
 }
 
 .recent{
@@ -164,9 +168,9 @@ width: 256px;
 	color: #000000;
 	font-size: 24px;
 	margin-left: -20px;
-	line-height: 30px;
 	font-weight: bold;
 	line-height: 28px;
+	height: 70px;
 	
 
 }
@@ -179,6 +183,10 @@ width: 256px;
 	font-family: vollkorn;
 	line-height: 25px;
 	vertical-align: top;;
+}
+
+.recent{
+	margin-top: 159px;
 }	
 
 
@@ -197,7 +205,8 @@ width: 256px;
 	font-weight: bold;
 	font-family: ubuntu;
 	font-size: 24px;
-	line-height: 28px
+	line-height: 28px;
+	height: 70px;
 }
 
 .recent span{
@@ -212,10 +221,8 @@ width: 256px;
 }
 
 .recent h1{
-	margin-left: 398px;
 	font-weight: lighter;
-	width: 478px;
-
+	margin-right:126px;
 }
 
 
@@ -228,6 +235,8 @@ a:active  {color:#303033;}
 a{text-decoration: none;}
 
 .create h1{font-weight: lighter;
+	text-align: left;
+	margin-left: 19px;
 }
 
 .create_1 li a:link {color: #000000;}
