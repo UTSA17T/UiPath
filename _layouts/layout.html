@@ -2,6 +2,7 @@
 <html class="fuelux" lang="en">
   <head>
     <meta charset="utf-8">
+
     <title>{{ page.title }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Screen scraping and UI automation software for desktop and web apps, Workflow to code in 1 click, 100% accuracy, extremely fast, excellent UI recognition">
@@ -26,11 +27,11 @@
     <!-- Le fav and touch icons -->
     <link rel="shortcut icon" href="/favicon.ico">    
   </head>
-<body data-spy="scroll" data-target=".subnav" data-offset="50" style="background: none #f5f5f5;">
+<body id="body" data-spy="scroll" data-target=".subnav" data-offset="50" style="background: none #f5f5f5;">
 {% include navigation.html %}
 
 <div class="home_content">
-	<h2 style="text-align: center; font-family: ubuntu;">{{ page.title }}</h2>
+	<h1 style="text-align: center;">{{ page.title }}</h2>
 	<div class="tab_description">	  		
 		<div style="margin: 20px;">
 			{{ content }} 					
