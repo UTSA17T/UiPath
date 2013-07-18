@@ -46,7 +46,7 @@ You would want non intrusive GUI automation when you
 - want to run multiple test scripts without interference
 - integrate apps without disturbing the user
 - perform background automation
-- automate apps logging in other windows account + disconnected remote desktops???
+- automate apps logging in other windows account + disconnected remote desktops
 - automate hidden windows/browsers (cannot click hidden controls)
 
 See you later,
