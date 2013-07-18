@@ -27,9 +27,9 @@ The problem with this approach is that it interferes with user actions. The mous
 For non-intrusive autoamtion, *UiPath* makes use of Win32 windows messages, [Active Accessibility](http://en.wikipedia.org/wiki/Microsoft_Active_Accessibility), [Java Accessibility API](http://docs.oracle.com/javase/7/docs/technotes/guides/access/jab/index.html), [HTML DOM](http://en.wikipedia.org/wiki/Document_Object_Model) and [UI Automation API](http://msdn.microsoft.com/en-us/library/windows/desktop/ee684009\(v=vs.85\).aspx).
 
 [UiInputMethod](https://github.com/Deskover/UiPath/wiki/Uinode#wiki-UiInputMethod) enumeration specifies the automation technology used by [Click](https://github.com/Deskover/UiPath/wiki/Uinode#wiki-Click), [Hover](https://github.com/Deskover/UiPath/wiki/Uinode#wiki-Hover) and [WriteText](https://github.com/Deskover/UiPath/wiki/Uinode#wiki-WriteText).
- - UI_HARDWARE_EVENTS - keystrokes and mouse events are synthesized by [SendInput](http://msdn.microsoft.com/en-us/library/windows/desktop/ms646310\(v=vs.85\).aspx) Win32 API function.
- - UI_WIN32_MSG - WM_LBUTTONDOWN, WM_LBUTTONUP and WM_CHAR windows messages are posted to target UI control.
- - UI_CONTROL_API - the underlying technology of the UI object is used to generate events (like Active Accessibility, Java Accessibility Bridge, HTML events)
+ * UI_HARDWARE_EVENTS - keystrokes and mouse events are synthesized by [SendInput](http://msdn.microsoft.com/en-us/library/windows/desktop/ms646310\(v=vs.85\).aspx) Win32 API function.
+ * UI_WIN32_MSG - WM_LBUTTONDOWN, WM_LBUTTONUP and WM_CHAR windows messages are posted to target UI control.
+ * UI_CONTROL_API - the underlying technology of the UI object is used to generate events (like Active Accessibility, Java Accessibility Bridge, HTML events)
 
 There is also support in *UiPath library* for launching a hidden *Internet Explorer* browser \(see [UiBrowserType](https://github.com/Deskover/UiPath/wiki/UiBrowser#wiki-UiBrowserType)\) which may prove very useful when performing background web automation.
 
@@ -42,12 +42,12 @@ It is a really interesting scenario and we'll dedicate it a full blog post very 
 
 ##Conclusions
 You would want non intrusive GUI automation when you
- - deal with UiPath events
- - want to run multiple test scripts without interference
- - integrate apps without disturbing the user
- - perform background automation
- - automate apps logging in other windows account + disconnected remote desktops
- - automate hidden windows/browsers (cannot click hidden controls)
+ * deal with UiPath events
+ * want to run multiple test scripts without interference
+ * integrate apps without disturbing the user
+ * perform background automation
+ * automate apps logging in other windows account + disconnected remote desktops
+ * automate hidden windows/browsers (cannot click hidden controls)
 
 See you later,
 
