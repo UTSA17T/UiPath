@@ -34,21 +34,19 @@ n.WriteText("Hello World", UI_WIN32_MSG);
 ```
 
 This is [JScript](http://en.wikipedia.org/wiki/JScript) sample that you can run with wscript.exe or cscript.exe. It feels a little bit too long for a “hello world” sample because of the comments and constant definitions required by good programming practices which double the line count.
-
 As you can see it starts with instantiating a library system object, launches notepad.exe application and fills out “hello world” text into the editable area.
-
 UiPath can perform this magic because it understands the internals of various UI frameworks: *Win32*, *WPF*, *HTML*, *PDF*, *Java*. The UI objects are usually arranged in a hierarchically tree, the root being the top level window the app and the UI controls being the leaves.
 
 
 ##UiNode
 
 The most important object of the library is [UiNode](https://github.com/Deskover/UiPath/wiki/Uinode) which represents an object in the UI hierarchy and it can do a lot of things:
-  * find UI objects on the screen: FromSelector, FromScreenPoint, FromScreenRegion, FromDesktop, FromWindow
-  * navigate through the UI tree: Child, FindFirst, FindAll, Parent, TopParent
-  * simulate user actions: Click, Hover, WriteText, SetFocus
-  * scrape the text / image of UI objects: Scrape, Screenshot
-  * get/set attributes of the UI objects: Get, Set
-  * inject scripts into web pages and extract HTMl data: InjectAndRunJS, ExtractData
+* find UI objects on the screen: FromSelector, FromScreenPoint, FromScreenRegion, FromDesktop, FromWindow
+* navigate through the UI tree: Child, FindFirst, FindAll, Parent, TopParent
+* simulate user actions: Click, Hover, WriteText, SetFocus
+* scrape the text / image of UI objects: Scrape, Screenshot
+* get/set attributes of the UI objects: Get, Set
+* inject scripts into web pages and extract HTMl data: InjectAndRunJS, ExtractData
 
 
 ##Selector
