@@ -1,15 +1,15 @@
-UiPath UiAutomation API walk–through
+# UiPath UiAutomation API walk–through
 
-Intro
+## Overview
 If you are reading this then you are most likely interested in GUI automation and/or screens scraping. This article presents UiPath GUI automation library. You will learn about what it can do, its main features and core API components.
 
-What is?
+## What is?
 
 UiPath is a complete solution for software automation with an accent on GUI automation. The workflow designer along with the GUI action recorder and GUI automation wizards make the user interface of other applications accessible with no programming effort.
 
 For the diehard programmer that needs maximum flexibility, beneath workflow activities there is a powerful COM library that can be used from virtually any programming language / IDE dubbed UiPath UiAutomation API (blame my manager for the name) . This API makes the GUI of other applications programmable, exposing the attributes of GUI objects on the screen and also simulating user actions on them. For those in a hurry here is the UiPath UiAutomation API reference.
 
-UiPath at a glance
+## UiPath at a glance
 
 A code sample is worth a thousand words so here is the “hello world” GUI automation code:
 
@@ -36,7 +36,7 @@ As you can see it starts with instantiating a library system object, launches no
 UiPath can perform this magic because it understands the internals of various UI frameworks: Win32, WPF, HTML, PDF, Java. The UI objects are usually arranged in a hierarchically tree, the root being the top level window the app and the UI controls being the leaves.
 
 
-UiNode
+## UiNode
 
 The most important object of the library is UiNode which represents an object in the UI hierarchy and it can do a lot of things:
 find UI objects on the screen: FromSelector, FromScreenPoint, FromScreenRegion, FromDesktop, FromWindow
@@ -47,7 +47,7 @@ get/set attributes of the UI objects: Get, Set
 inject scripts into web pages and extract HTMl data: InjectAndRunJS, ExtractData
 
 
-Selector
+## Selector
 
 The most important method of UiNode is FromSelector which searches for a GUI object on the screen based on a XML-like string called selector. The selector contains all the necessary information to identify an GUI object at runtime. Here is the selector that identifies the editable area in notepad.exe app.
 
@@ -58,7 +58,7 @@ As you can see, the selector describes a path from the top level window to the G
 Selectors may seem complicated but worry not, UiPath has tools that generate them automatically. Here you may find the full selector story.
 
 
-Image-based GUI automation
+## Image-based GUI automation
 
 As we have seen, the selector is the best method of object recognition (when it works). There are applications like remote desktop clients which only paint the controls on the screen. For these apps the selector can only identify the top level window of the application but not the controls inside.
 
@@ -71,16 +71,16 @@ instantiate a UiNode and use FromSelector to find the top level window of the ap
 call uiNode.FindImage against the image object at step 1). and get a UiRegion which represents the coordinates of the UI object on the screen.
 Having the coordinates we can Click on the GUI object.
 
-Other library objects
+## Other library objects
 
 There are several other objects in the library that completes the feature list.
 UiBrowser which provides browser-related functionality like: Start, Navigate, Refresh, Close, WaitPage
 UiWindow exposes window-related methods like: Move, Maximize, Minimize, Restore, Close, Show, Hide
 UiSystem provides system-related features like: GetClipboardText, SetClipboardText, RunApplication, CloseApp, Cleanup, GetActiveWindow
 
-Event triggers
+## Event triggers
 
-Event triggers is UiPath’s unique feature. In a way, it is the opposite of GUI automation. While GUI automation simulates user actions by generating click and keyboard events on GUI controls, events triggers intercepts user actions on certain controls.
+Event trigger is UiPath’s unique feature. In a way, it is the opposite of GUI automation. While GUI automation simulates user actions by generating click and keyboard events on GUI controls, events triggers intercepts user actions on certain controls.
 
 It works like this:
 you first specify what event you are interested in: mouse or keyboard and which mouse button / key combination
@@ -95,7 +95,7 @@ UiSystem: MonitorClick, MonitorHover, MonitoryHotkey, StopMonitoring. UiSystem p
 
 Here is the full story on UI event triggers.
 
-Conclusions
+## Conclusions
 
 By now, you should have a fairly good idea about what UiPath GUI automation library is, what it can do and its core concepts.
 
