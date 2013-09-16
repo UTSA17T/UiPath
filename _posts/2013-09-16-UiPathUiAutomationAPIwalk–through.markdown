@@ -41,6 +41,7 @@ UiPath can perform this magic because it understands the internals of various UI
 ##UiNode
 
 The most important object of the library is [UiNode](https://github.com/Deskover/UiPath/wiki/Uinode) which represents an object in the UI hierarchy and it can do a lot of things:
+
  + find UI objects on the screen: FromSelector, FromScreenPoint, FromScreenRegion, FromDesktop, FromWindow
  + navigate through the UI tree: Child, FindFirst, FindAll, Parent, TopParent
  + simulate user actions: Click, Hover, WriteText, SetFocus
