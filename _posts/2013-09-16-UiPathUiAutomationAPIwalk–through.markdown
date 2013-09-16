@@ -69,7 +69,7 @@ Here’s the pseudo-code of image-based GUI automation:
 
  + instantiate a UiImage object and call LoadFile against the file containing the image of the GUI object
  + instantiate a UiNode and use FromSelector to find the top level window of the app to be automated
- + call uiNode.FindImage against the image object at step 1). and get a UiRegion which represents the coordinates of the UI object on the screen
+ + call uiNode.FindImage against the image object at step one and get a UiRegion which represents the coordinates of the UI object on the screen
  + having the coordinates we can Click on the GUI object
 
 ##Other library objects
