@@ -59,13 +59,10 @@ The most important method of UiNode is [FromSelector](https://github.com/Deskove
 As you can see, the selector describes a path from the top level window to the GUI object we’re looking for. Each XML part defines an object by specifying its relevant attributes. The selector is important because it provides a way of identifying the GUI objects based on their attributes rather than their size and position on the screen.
 Selectors may seem complicated but worry not, UiPath has tools that generate them automatically. [Here](https://github.com/Deskover/UiPath/wiki/Selector) you may find the full selector story.
 
-
 ##Image-based GUI automation
 
 As we have seen, the selector is the best method of object recognition (when it works). There are applications like remote desktop clients which only paint the controls on the screen. For these apps the selector can only identify the top level window of the application but not the controls inside.
-For these special scenarios UiPath provides image-based GUI automation and *OCR* screen scraping. The idea behind image-based GUI automation is to use screenshot patterns to identify controls and GUI components and then direct mouse and keyboard events to them. First you take a screenshot of the control you want to automate and them the library searches for the image to get the position of the control on the screen.
-
-Here’s the pseudo-code of image-based GUI automation:
+For these special scenarios UiPath provides image-based GUI automation and *OCR* screen scraping. The idea behind image-based GUI automation is to use screenshot patterns to identify controls and GUI components and then direct mouse and keyboard events to them. First you take a screenshot of the control you want to automate and them the library searches for the image to get the position of the control on the screen. Here’s the pseudo-code of image-based GUI automation:
  + instantiate a UiImage object and call LoadFile against the file containing the image of the GUI object
  + instantiate a UiNode and use FromSelector to find the top level window of the app to be automated
  + call uiNode.FindImage against the image object at step 1). and get a UiRegion which represents the coordinates of the UI object on the screen
