@@ -48,7 +48,7 @@ The most important object of the library is [UiNode](https://github.com/Deskover
 
  * simulate user actions: Click, Hover, WriteText, SetFocus.
 
- * scrape the text / image of UI objects: Scrape, Screenshot.
+ * scrape the text or image of UI objects: Scrape, Screenshot.
 
  * get/set attributes of the UI objects: Get, Set.
 
