@@ -1,27 +1,41 @@
 @font-face {
-	font-family: Libertine;
-	src: url(../font/LinLibertine_Rah.ttf);
+	font-family: body-text;
+	src: url('../font/GandhiSans-Regular.otf') format('opentype');
 }
 @font-face {
-	font-family: Biolinum;
-	src: url(../font/LinBiolinum_RBah.ttf);
+	font-family: body-heading;
+	src: url('../font/Enriqueta-Bold.otf') format('opentype');
 }
 
 .home_content {
-	font-family: Libertine;
-	font-size: 1.2em;
+	font-family: Ubuntu;
+	font-size: 1.0em;
+	line-height: 1.6em;
+	text-align: justify;
 }
-
 
 .home_content h1, .home_content h2, .home_content h3, .home_content h4, .home_content h5, .home_content h6 {
-	font-family: Biolinum;
+	font-family: body-heading, Helvetica, serif;
+	text-align: left;
 }
 
+.home_content ol li { list-style-type: decimal; }
 
+.home_content li {
+	line-height: inherit;
+}
+
+@media all and (min-width: 650px) {
+	.home_content h1 { font-size: 1.75em; text-decoration: underline; }
+	.home_content h2 { font-size: 1.6em; text-decoration: underline; }
+	.home_content h3 { font-size: 1.4em; }
+	.home_content h4 { font-size: 1.2em; }
+}
 @media all and (max-width: 649px) {
-	.home_content h1 { font-size: 1.4em; }
-	.home_content h2 { font-size: 1.2em; }
-	.home_content h3 { font-size: 1.05em; }
+	.home_content h1 { font-size: 1.5em; text-decoration: underline; }
+	.home_content h2 { font-size: 1.4em; text-decoration: underline; }
+	.home_content h3 { font-size: 1.25em; }
+	.home_content h4 { font-size: 1.15em; }
 }
 
 #logo-link {
