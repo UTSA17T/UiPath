@@ -71,7 +71,6 @@ As we have seen, the selector is the best method of object recognition (when it 
 For these special scenarios UiPath provides image-based GUI automation and *OCR* screen scraping. The idea behind image-based GUI automation is to use screenshot patterns to identify controls and GUI components and then direct mouse and keyboard events to them. First you take a screenshot of the control you want to automate and them the library searches for the image to get the position of the control on the screen.
 
 Here’s the pseudo-code of image-based GUI automation:
-
 * instantiate a UiImage object and call LoadFile against the file containing the image of the GUI object.
 * instantiate a UiNode and use FromSelector to find the top level window of the app to be automated.
 * call uiNode.FindImage against the image object at step 1). and get a UiRegion which represents the coordinates of the UI object on the screen.
@@ -89,15 +88,15 @@ There are several other objects in the library that completes the feature list.
 Event trigger is UiPath’s unique feature. In a way, it is the opposite of GUI automation. While GUI automation simulates user actions by generating click and keyboard events on GUI controls, events triggers intercepts user actions on certain controls.
 
 It works like this:
-*you first specify what event you are interested in: mouse or keyboard and which mouse button / key combination
+* you first specify what event you are interested in: mouse or keyboard and which mouse button / key combination
 * you specify a selector to specify what GUI objects to monitor
 * specify a screen region to restricts the area inside the matching visual elements in which the clicks will be monitored
 
 When the event occurs and all the conditions are satisfied your code will be notified (a *COM* callback function will be called). The client code has the option to cancel the event so it won’t get to the target GUI control.
 
 Here are the event-related library objects and methods:
-*UiNodeMonitor: MonitorClick, MonitorClickOnImage, MonitorHotkey, StopMonitor.
-*UiSystem: MonitorClick, MonitorHover, MonitoryHotkey, StopMonitoring. UiSystem provides global monitoring (not restricted to any GUI object).
+* UiNodeMonitor: MonitorClick, MonitorClickOnImage, MonitorHotkey, StopMonitor.
+* UiSystem: MonitorClick, MonitorHover, MonitoryHotkey, StopMonitoring. UiSystem provides global monitoring (not restricted to any GUI object).
 
 [Here](https://github.com/Deskover/UiPath/wiki/Api-documentation#wiki-UI_events) is the full story on UI event triggers.
 
