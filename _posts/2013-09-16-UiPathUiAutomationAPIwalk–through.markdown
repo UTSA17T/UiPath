@@ -78,9 +78,9 @@ Here’s the pseudo-code of image-based GUI automation:
 
 There are several other objects in the library that completes the feature list.
 
- * UiBrowser which provides browser-related functionality like: Start, Navigate, Refresh, Close, WaitPage
- * UiWindow exposes window-related methods like: Move, Maximize, Minimize, Restore, Close, Show, Hide
- * UiSystem provides system-related features like: GetClipboardText, SetClipboardText, RunApplication, CloseApp, Cleanup, GetActiveWindow
+ * UiBrowser which provides browser-related functionality like: Start, Navigate, Refresh, Close, WaitPage.
+ * UiWindow exposes window-related methods like: Move, Maximize, Minimize, Restore, Close, Show, Hide.
+ * UiSystem provides system-related features like: GetClipboardText, SetClipboardText, RunApplication, CloseApp, Cleanup, GetActiveWindow.
 
 ##Event triggers
 
@@ -88,9 +88,9 @@ Event trigger is UiPath’s unique feature. In a way, it is the opposite of GUI 
 
 It works like this:
 
- * you first specify what event you are interested in: mouse or keyboard and which mouse button / key combination
- * you specify a selector to specify what GUI objects to monitor
- * specify a screen region to restricts the area inside the matching visual elements in which the clicks will be monitored
+ * you first specify what event you are interested in: mouse or keyboard and which mouse button / key combination.
+ * you specify a selector to specify what GUI objects to monitor.
+ * specify a screen region to restricts the area inside the matching visual elements in which the clicks will be monitored.
 
 When the event occurs and all the conditions are satisfied your code will be notified (a *COM* callback function will be called). The client code has the option to cancel the event so it won’t get to the target GUI control.
 
@@ -107,12 +107,12 @@ By now, you should have a fairly good idea about what UiPath GUI automation libr
 
 Keep in mind that UiPath product is more than only a GUI automation library. It’s a software automation and application integration tool that automates business processes. With its powerful workflow designer one can easily:
 
- * automatically send emails and sms
- * process XML, CSV, Excel files
- * invoke Powershell scripts
- * make HTTP and SOAP calls
- * perform database transactions
- * and much more ...
+ * automatically send emails and sms.
+ * process XML, CSV, Excel files.
+ * invoke Powershell scripts.
+ * make HTTP and SOAP calls.
+ * perform database transactions.
+ * and much more.
 
 Until next time,
 Adrian.
