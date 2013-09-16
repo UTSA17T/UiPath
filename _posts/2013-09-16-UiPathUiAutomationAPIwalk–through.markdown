@@ -41,6 +41,7 @@ UiPath can perform this magic because it understands the internals of various UI
 ##UiNode
 
 The most important object of the library is [UiNode](https://github.com/Deskover/UiPath/wiki/Uinode) which represents an object in the UI hierarchy and it can do a lot of things:
+
  * find UI objects on the screen: FromSelector, FromScreenPoint, FromScreenRegion, FromDesktop, FromWindow
  * navigate through the UI tree: Child, FindFirst, FindAll, Parent, TopParent
  * simulate user actions: Click, Hover, WriteText, SetFocus
@@ -76,6 +77,7 @@ Here’s the pseudo-code of image-based GUI automation:
 ##Other library objects
 
 There are several other objects in the library that completes the feature list.
+
  * UiBrowser which provides browser-related functionality like: Start, Navigate, Refresh, Close, WaitPage
  * UiWindow exposes window-related methods like: Move, Maximize, Minimize, Restore, Close, Show, Hide
  * UiSystem provides system-related features like: GetClipboardText, SetClipboardText, RunApplication, CloseApp, Cleanup, GetActiveWindow
@@ -85,6 +87,7 @@ There are several other objects in the library that completes the feature list.
 Event trigger is UiPath’s unique feature. In a way, it is the opposite of GUI automation. While GUI automation simulates user actions by generating click and keyboard events on GUI controls, events triggers intercepts user actions on certain controls.
 
 It works like this:
+
  * you first specify what event you are interested in: mouse or keyboard and which mouse button / key combination
  * you specify a selector to specify what GUI objects to monitor
  * specify a screen region to restricts the area inside the matching visual elements in which the clicks will be monitored
@@ -92,6 +95,7 @@ It works like this:
 When the event occurs and all the conditions are satisfied your code will be notified (a *COM* callback function will be called). The client code has the option to cancel the event so it won’t get to the target GUI control.
 
 Here are the event-related library objects and methods:
+
  * UiNodeMonitor: MonitorClick, MonitorClickOnImage, MonitorHotkey, StopMonitor.
  * UiSystem: MonitorClick, MonitorHover, MonitoryHotkey, StopMonitoring. UiSystem provides global monitoring (not restricted to any GUI object).
 
@@ -102,6 +106,7 @@ Here are the event-related library objects and methods:
 By now, you should have a fairly good idea about what UiPath GUI automation library is, what it can do and its core concepts.
 
 Keep in mind that UiPath product is more than only a GUI automation library. It’s a software automation and application integration tool that automates business processes. With its powerful workflow designer one can easily:
+
  * automatically send emails and sms
  * process XML, CSV, Excel files
  * invoke Powershell scripts
