@@ -21,10 +21,13 @@ The UiPath library offers the possibility of monitoring input events throughout 
 This functionality is exported through the **UiSystem interface**, which can monitor the following events:
 
 - Click on any mouse button, with an optional modifier key, such as Ctrl, Shift or Alt, or any combination of them.
+  
   The method which offers this feature is *UiSystem::MonitorClick*.
 - Hovering of the mouse cursor (mouse idling) for a specified amount of time.
+  
   The method which enables monitoring mouse hovering is *UiSystem::MonitorHover*.
 - Hotkey triggering, with an optional modifier, such as Ctrl/Shift/Alt, or any combination of them.
+  
   The mothod that enables you to monitor global hotkeys is *UiSystem::MonitorHotkey*
 
 The UiPath library supports these features together, you can have a monitor for clicks and keystrokes and hovering at the same time. 
@@ -250,8 +253,10 @@ You can define the area of event monitoring using these filters:
 filtered monitoring and we must have at least one filter.
 - Images inside visual elements - after the selector filter is passed, there is an optional image which can be specified as a filter 
 for reporting mouse clicks. Only clicks on this image inside the element will be reported.
+  
   *Example*: you want to catch a click on the "Save" button in a toolbar, but only when the button is enabled.
 - Regions inside visual elements - this filter is also optional and only applies to mouse click events. It indicates a region inside a visual element (specified by a selector) which will trigger the mouse clicks.
+  
   *Example*: you want to catch a click on a big picture control, but only in its upper-left area.
 
 ## Technical details
@@ -262,8 +267,10 @@ There are two kinds of UiNode monitors available:
 
 - Synchronous - the original event is blocked from reaching the target application. The event occurence is then reported as a COM event 
 via the event callback. The event callback makes the decision of whether the event will be returned to the original application or not. 
+  
   The main idea of the synchronous event is that the target application should not alter its visual state until we receive and process 
   the event.
+  
   *Example*: you want to process a click on the "OK" button of a dialog box and get some text out of it before it closes.
 - Asynchronous - the original event is permitted to reach the target application. The UiNodeMonitor object will report the event using 
 *COM events*, but at the time that you receive the notification, the event may have altered the state of the monitored application. 
