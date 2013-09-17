@@ -1,0 +1,476 @@
+---
+layout: layout
+title: "Monitoring keyboard and mouse events using the UiPath library"
+---
+
+# Introduction
+
+The **UiPath library** is an automation tool which incorporates the ability to catch user actions in real time and report them. Every input event, such as a mouse click or a keystroke, can be intercepted and a notification will be sent in the form of a COM event.
+UiPath offers two kinds of input event monitors: 
+1.	Global monitors - they notify about the occurence of the specified event in any application.
+2. 	UI filtering monitors - they report the event when it occurs on a filtered UI area: a visual element, such as a button or a combo box, or even a smaller region inside a visual element.
+
+# Global event monitors
+  
+## Description
+
+The UiPath library offers the possibility of monitoring input events throughout all the opened applications in the current desktop.
+This functionality is exported through the **UiSystem interface**, which can monitor the following events:
+-	Click on any mouse button, with an optional modifier key, such as Ctrl, Shift or Alt, or any combination of them.
+	The method which offers this feature is *UiSystem::MonitorClick*.
+- 	Hovering of the mouse cursor (mouse idling) for a specified amount of time.
+	The method which enables monitoring mouse hovering is *UiSystem::MonitorHover*.
+- 	Hotkey triggering, with an optional modifier, such as Ctrl/Shift/Alt, or any combination of them.
+	The mothod that enables you to monitor global hotkeys is *UiSystem::MonitorHotkey*
+The UiPath library supports these features together, you can have a monitor for clicks and keystrokes and hovering at the same time. After you are done monitoring, the event interceptors can be stopped using the *UiSystem::StopMonitoring* method. It is recommended that you call it upon application exit.
+
+## Technical details
+
+The event reporting is **synchronous**, which means that the initial event is blocked from reaching the target application. After your monitoring application receives the event via COM, you can make the decision to pass the event back to the original application or prevent it from happening.
+The main idea is that the initial event will not alter the state of the target application until you finish processing it in your application.
+
+## Limitations
+
+For a given instance of an UiSystem object, you can monitor at most 5 distinct "mouse + key" combinations and no more than 10 hotkeys.
+Each instance of the UiSystem interface takes a **monitoring slot**. One slot can store information for the three types of events described above. **There can be at most 5 active monitoring slots**, used by any application in the system. So, if you write an application which uses (for some strange reason) 3 monitoring UiSystem objects, another application will be able to use a maximum of 2 UiSystem objects for global event monitoring.
+**Recommended**: **use only one UiSystem instance per application**, it offers enough features for most needs. The object will be kept alive throughout the application lifetime and you will start and stop monitoring when needed, without releasing and re-creating the UiSystem object.
+
+## Implementation details
+
+### COM event listeners
+
+As we stated above, the application which monitors input events using UiSystem will receive notifications about these events via *COM events*. This means that you will have to create and attach an event listener.
+  
+#### COM events in C#
+
+In C#, creating and attaching COM event listeners for answering the UiSystem events are accomplished like this:
+
+```csharp
+uiSystemEvents.OnUiMouse += new IUiEvents_OnUiMouseEventHandler(UiSystemEvents_OnUiMouseEvent);
+uiSystemEvents.OnUiKeyboard += new IUiEvents_OnUiKeyboardEventHandler(UiSystemEvents_OnUiKeyboardEvent);
+```
+
+and the event callbacks look like this:
+
+```csharp
+void UiSystemEvents_OnUiMouseEvent(UiEventInfo eventInfo)
+{
+	//The UiEventInfo interface is described in the UiSystem documentation.
+	...
+}
+void UiSystemEvents_OnUiKeyboardEvent(UiEventInfo eventInfo)
+{
+	//The UiEventInfo interface is described in the UiSystem documentation.
+	...
+}
+```
+	
+The event callbacks are detached by calling:
+
+```csharp
+uiSystemEvents.OnUiMouse -= UiSystemEvents_OnUiMouseEvent;
+uiSystemEvents.OnUiKeyboard -= UiSystemEvents_OnUiKeyboardEvent;
+```
+
+#### COM events in C++
+  
+In C++, things are more difficult. First, the event listener for UiSystem has to be declared. Luckily, ATL offers an easy way of doing it:
+  
+```cpp
+//One argument for the mouse event callback: the "IUIEventInfo*" object.
+static _ATL_FUNC_INFO FiredSystemMouseEventStruct = {CC_STDCALL, VT_EMPTY, 1, {VT_DISPATCH}};
+//One argument for the keyboard event callback: the "IUIEventInfo*" object.
+static _ATL_FUNC_INFO FiredSystemKeyboardEventStruct = {CC_STDCALL, VT_EMPTY, 1, {VT_DISPATCH}};
+
+class CSystemEventsHandler : public IDispEventSimpleImpl</*nID =*/ 1, CSystemEventsHandler, &__uuidof(IUiEvents)>
+{
+public:
+	BEGIN_SINK_MAP(CSystemEventsHandler)
+		SINK_ENTRY_INFO(1, __uuidof(IUiEvents), 1, &CSystemEventsHandler::OnUiMouse, &FiredSystemMouseEventStruct)
+		SINK_ENTRY_INFO(1, __uuidof(IUiEvents), 2, &CSystemEventsHandler::OnUiKeyboard, &FiredSystemKeyboardEventStruct)
+	END_SINK_MAP()
+
+	void __stdcall OnUiMouse(CComQIPtr<IUiEventInfo> uiEvent)
+	{
+		MessageBox(NULL, _T("Event fired"), _T("Event handler"), 0);
+	}
+
+	void __stdcall OnUiKeyboard(CComQIPtr<IUiEventInfo> uiEvent)
+	{
+		MessageBox(NULL, _T("Event fired"), _T("Event handler"), 0);
+	}
+
+	HRESULT Advise(IUnknown *punk)
+	{
+		return IDispEventSimpleImpl<1, CSystemEventsHandler, &__uuidof(IUiEvents)>::DispEventAdvise(punk);
+	}
+};
+```
+  
+You can use the code template above and modify the *OnUiMouse* and *OnUiKeyboard* methods to suit your needs.
+Considering that the event handle class is named as in the code template above, *CSystemEventsHandler*, you can create a COM event listener for UiSystem like this:
+  
+```cpp
+spUiSystem.CoCreateInstance(CLSID_UiSystem);
+
+//Create and attach the COM event listener object.
+CSystemEventsHandler     evSystemHandler;
+evSystemHandler.DispEventAdvise(spUiSystem);
+
+//Start monitoring
+spUiSystem.StartMonitoring(<something>);
+```
+
+After you are done monitoring, detaching the COM event is easy:
+
+```cpp
+//Detach the event listener.
+evSystemHandler.DispEventUnadvise(spUiSystem);
+
+//Stop monitoring only after detaching the COM event listener.
+spUiSystem->StopMonitoring();
+```
+
+### Hints for managed languages
+
+Managed languages, such as C# or VB.NET, use garbage collectors to handle the creation and destruction of objects. The objects are still alive when they go out of scope, they are destroyed by the garbage collector "when needed", which does not guarantee a precise moment when the objects are released from memory. This behaviour can lead to strange errors, such as UiSystem reporting to be *"out of monitoring slots"*. 
+So, this C# code:
+
+```csharp
+for(i=0; i<6; ++i)
+{
+	UiSystem uiSystemEvents = UiFactory.Instance.NewUiSystem();
+
+	//This does not ensure that the uiSystemEvents object is released.
+		uiSystemEvents = null;
+}
+```
+  
+will yield an exception when *i=5*, stating that the UiSystem monitor is *"out of slots"*. This happens because there are already 5 UiSystem instances, created when *i=0...4*, kept alive by the garbage collector.
+If you **really** want to write such code (it's not about the *for* cycle, it about the redundant creation of UiSystem objects, which we **do not recommend**), the code which does a proper cleanup of an UiSystem object is this:
+
+```csharp
+for(i=0; i<6; ++i)
+{
+	UiSystem uiSystemEvents = UiFactory.Instance.NewUiSystem();
+
+	//Ensure that the monitor object is destroyed. Managed languages destroy accumulated object instances using garbage
+	//collectors. We do not recommend accumulating UiSystem object instances because of the limitations described above.
+		System.Runtime.InteropServices.Marshal.ReleaseComObject(uiSystemEvents);
+		uiSystemEvents = null;
+		GC.Collect();
+}
+```
+
+## Case study
+
+Let's take a simple task as an example: monitoring "Ctrl + Right click" in any application. Here is a sample code, written in C#, which can accomplish this.
+
+```csharp
+//Import the UiPath library using this line, it must be available as a COM object.
+	using UiPath;
+
+//The object used to monitor system wide events.
+	public UiSystem uiSystemEvents = UiFactory.Instance.NewUiSystem();
+
+public StartGlobalMonitoring()
+{
+	//Register for mouse monitoring
+		uiSystemEvents.OnUiMouse += new IUiEvents_OnUiMouseEventHandler(UiSystemEvents_OnUiMouseEvent);
+	//Set up the monitoring parameters: "Ctrl + Right click", and let the events reach the target application after we receive them.
+		UiMouseButton msBtn = UiMouseButton.UI_BTN_RIGHT;
+		UiKeyModifier kModif = UiKeyModifier.UI_KEY_Ctrl;
+		UiEventMode   eventMode = UiEventMode.UI_EVENT_FORWARD;
+	//Start monitoring "Ctrl + Right click".
+		uiSystemEvents.MonitorClick(msBtn, kModif, eventMode);
+}
+
+//Here is the callback function which UiPath calls to notify our application about the "Ctrl + Right click" event.
+void UiSystemEvents_OnUiMouseEvent(UiEventInfo eventInfo)
+{
+	//Append the event info to an "imaginary" string variable called "LogText". 
+	//The idea is to notice the information contained in the "eventInfo" parameter.
+		LogText += "OnMonitorMouseEvent fired : hwnd: " + eventInfo.targetWindow.hWnd + 
+					", x1: " + eventInfo.position.left + ", y1: " + eventInfo.position.top + 
+					", x2:" + eventInfo.position.right + ", y2: " + eventInfo.position.bottom + "\r\n");
+}
+
+public StopGlobalMonitoring()
+{
+	//Detach the event callback
+		uiSystemEvents.OnUiMouse -= UiSystemEvents_OnUiMouseEvent;
+	//Stop monitoring
+		uiSystemEvents.StopMonitoring();
+}
+```
+
+The usage is pretty straightforward and these principles can be applied to other languages.
+
+# UI filtering monitors
+
+## Description
+	
+The UiPath library supports restricting the scope of input event monitoring such as only events occurring on a specific visual element are reported to your application. This way, you can receive mouse clicks on a specific button or keystrokes inside a specific editable control.
+You can define the area of event monitoring using these filters:
+-	UiNode selectors - they are strings which indicate visual elements on the screen. They are mandatory, because we are talking about filtered monitoring and we must have at least one filter.
+- 	Images inside visual elements - after the selector filter is passed, there is an optional image which can be specified as a filter for reporting mouse clicks. Only clicks on this image inside the element will be reported.
+	*Example*: you want to catch a click on the "Save" button in a toolbar, but only when the button is enabled.
+- 	Regions inside visual elements - this filter is also optional and only applies to mouse click events. It indicates a region inside a visual element (specified by a selector) which will trigger the mouse clicks.
+	*Example*: you want to catch a click on a big picture control, but only in its upper-left area.
+
+## Technical details
+
+The programming interface which enables filtered monitoring is called **UiNodeMonitor**.
+There are two kinds of UiNode monitors available:
+- 	Synchronous - the original event is blocked from reaching the target application. The event occurence is then reported as a COM event via the event callback. The event callback makes the decision of whether the event will be returned to the original application or not. The main idea of the synchronous event is that the target application should not alter its visual state until we receive and process the event.
+	*Example*: you want to process a click on the "OK" button of a dialog box and get some text out of it before it closes.
+- 	Asynchronous - the original event is permitted to reach the target application. The UiNodeMonitor object will report the event using *COM events*, but at the time that you receive the notification, the event may have altered the state of the monitored application. Even if the event reporting is asynchonous with respect to the original event, the events are reported in the order they first appeared.
+
+The monitored events can be:
+- 	Mouse clicks with optional keyboard modifiers - such as "Shift + Left click".
+- 	Hotkey combinations - such as "Ctrl + Enter".
+
+The monitors can be stopped individually, using the *UiNodeMonitor::StopMonitor(monitor_id)* method, or you can stop all the monitors associated with a specific UiNodeMonitor object by calling the *UiNodeMonitor::StopMonitoring(void)* method.
+If your monitoring application happens to crash, the affected slots will be checked later when starting a monitor from another application. Monitoring slots are constantly checked and they are freed even if your application "forgets" to, for any reason. However, we recommend cleaning up the monitoring slots when you should, to avoid unpleasant surprises, such as the *"out of monitoring slots"* exception.
+
+## Limitations
+	
+There are no limitations on the number of UiNodeMonitor instances.
+Each time you call the *Monitor[...]* methods of the UiNodeMonitor interface, and the function succeeds, a **monitoring slot** will be occupied with the specified filters (selector, image and region filters). **There can be at most 32 monitoring slots** active in the system at one time. It does not matter how many UiNodeMonitor instances use these slots, or if they are instantiated in different applications across the system, all the monitoring slots in the system must not exceed 32.
+
+## Implementation details
+
+### COM event listeners
+
+Any application which monitors input events using UiNodeMonitor will receive notifications about these events via *COM events*. This means that you will have to create and attach an event listener, as it was the case with UiSystem.
+	
+#### COM events in C#
+
+In C#, creating and attaching COM event listeners for answering the UiNodeMonitor events are accomplished like this:
+  
+```csharp
+uiNodeEvents.OnUiMouse += new IUiEvents_OnUiMouseEventHandler(uiNodeMonitor_OnUiMouseEvent);
+uiNodeEvents.OnUiKeyboard += new IUiEvents_OnUiKeyboardEventHandler(uiNodeMonitor_OnUiKeyboardEvent);
+```
+
+and the event callbacks look like this:
+
+```csharp
+void uiNodeMonitor_OnUiMouseEvent(UiEventInfo eventInfo)
+{
+	//The UiEventInfo interface is described in the UiNodeMonitor documentation.
+	<...>
+}
+void uiNodeMonitor_OnUiKeyboardEvent(UiEventInfo eventInfo)
+{
+	//The UiEventInfo interface is described in the UiNodeMonitor documentation.
+	<...>
+}
+```
+		
+The event callback is detached by calling:
+
+```csharp
+uiNodeEvents.OnUiMouse -= uiNodeMonitor_OnUiMouseEvent;
+uiNodeEvents.OnUiKeyboard -= uiNodeMonitor_OnUiKeyboardEvent;
+```
+
+#### COM events in C++
+
+```cpp
+static _ATL_FUNC_INFO FiredMouseEventStruct = {CC_STDCALL, VT_EMPTY, 1, {VT_DISPATCH|VT_BYREF}};
+static _ATL_FUNC_INFO FiredKeyboardEventStruct = {CC_STDCALL, VT_EMPTY, 1, {VT_DISPATCH|VT_BYREF}};
+
+class CNodeMonitorHandler : public IDispEventSimpleImpl</*nID =*/ 1, CNodeMonitorHandler, &__uuidof(IUiEvents)>
+{
+public:
+   CNodeMonitorHandler()
+   {
+	   //The default behaviour is to let the event reach the target application.
+	   m_enEventMode = UI_EVENT_FORWARD;
+   }
+
+public:
+   BEGIN_SINK_MAP(CNodeMonitorHandler)
+	  SINK_ENTRY_INFO(1, __uuidof(IUiEvents), 1, &CNodeMonitorHandler::OnUiMouse, &FiredMouseEventStruct)
+	  SINK_ENTRY_INFO(1, __uuidof(IUiEvents), 2, &CNodeMonitorHandler::OnUiKeyboard, &FiredKeyboardEventStruct)
+   END_SINK_MAP()
+
+public:
+	UiEventMode m_enEventMode;  
+   
+	void __stdcall OnUiMouse(CComQIPtr<IUiEventInfo> uiEvent)
+	{
+		MessageBox(NULL, _T("Event fired"), _T("Event handler"), 0);
+		//You can choose to forward (UI_EVENT_FORWARD) or block (UI_EVENT_BLOCK) the mouse event. 
+		uiEvent->forward = m_enEventMode;
+	}
+
+	void __stdcall OnUiKeyboard(CComQIPtr<IUiEventInfo> uiEvent)
+	{
+		MessageBox(NULL, _T("Event fired"), _T("Event handler"), 0);
+		//You can choose to forward (UI_EVENT_FORWARD) or block (UI_EVENT_BLOCK) the keyboard event. 
+		uiEvent->forward = m_enEventMode;
+	}
+
+	HRESULT Advise(IUnknown *punk)
+	{
+		return IDispEventSimpleImpl<1, CNodeMonitorHandler, &__uuidof(IUiEvents)>::DispEventAdvise(punk);
+	}
+};
+```
+
+You can use the code template above and modify the *OnUiMouse* and *OnUiKeyboard* methods to suit your needs. Considering that the event handles class is named as in the code template above, *CNodeMonitorHandler*, you can create a COM event listener for UiSystem like this:
+  
+```cpp
+spNodeMon.CoCreateInstance(CLSID_UiNodeMonitor);
+
+//Create and attach the COM event listener object.
+CNodeMonitorHandler     evNodeMonHandler;
+evNodeMonHandler.DispEventAdvise(spNodeMon);
+
+//Start monitoring. Notice the returned value which uniquely identifies the monitor which has just been started.
+nMonitorId = spUiSystem.MonitorClick(<something>);
+```
+
+After you are done monitoring, detaching the COM event is easy:
+
+```cpp
+//Detach the event listener.
+evNodeMonHandler.DispEventUnadvise(spNodeMon);
+
+//Stop monitoring only after detaching the COM event listener.
+spNodeMon->StopMonitor(nMonitorId);
+```
+		
+### Hints for managed languages
+
+There are no limitations for UiNodeMonitor instances, just make sure that release the monitors when you don't need them any more, to prevent the accumulation of slots.
+
+## Case studies
+
+### Monitoring a mouse click combination on a button in *Notepad*
+
+Suppose you have the classic Notepad application, which ships with any Windows version. You can launch it easily from the Windows Search bar. If you click the "Format" menu, then "Font", a "Font" dialog will come up. We want to monitor the "Shift + Left click" combination on the "OK" button of this dialog.
+We want to catch the click *synchronously*, which means that we will process the click before reaching the Notepad dialog and dismissing it.
+Here is a piece of C# code which is meant to accomplish this task:
+
+```csharp
+//Import the UiPath library using this line, it must be available as a COM object.
+	using UiPath;
+
+//The object used to monitor events on specific visual elements.
+	public UiNodeMonitor uiNodeEvents = UiFactory.Instance.NewUiNodeMonitor();
+//This string selector uniquely identifies the "OK" button in the "Font" dialog of Notepad. Notice the "parent-to-child"
+//structure, similar to file paths in any operating system.
+//For more information on selectors, check the UiPath documentation.
+	public string okBtnSelector = "<wnd app='notepad.exe' cls='#32770' title='Font'/><wnd ctrlid='1'/>";
+//We will hold the identifier of the click monitor in this variable.
+	public int okBtnMonitorIdentifier;
+
+public StartMonitoring()
+{
+	//Register for mouse monitoring
+		uiNodeEvents.OnUiMouse += new IUiEvents_OnUiMouseEventHandler(uiNodeMonitor_OnUiMouseEvent);
+	//Set up the monitoring parameters: "Shift + Left click".
+		UiMouseButton msBtn = UiMouseButton.UI_BTN_LEFT;
+		UiKeyModifier kModif = UiKeyModifier.UI_KEY_Shift;
+		UiEventType   eventType = UiEventType.UI_EVENT_SYNCHRONOUS;
+	//Only match the click on the OK button, not on its child descendants (it would not make sense anyway, since it
+	//has none).
+		bool matchChildren = false;
+	//Start monitoring "Shift + Left click". The last parameter is "null" because we want to monitor the whole "OK" button,
+	//not just a region of it.
+		okBtnMonitorIdentifier = uiNodeEvents.MonitorClick(msBtn, kModif, eventType, okBtnSelector, matchChildren, null);
+}
+
+//Here is the callback function which UiPath calls to notify our application about the "Shift + Left click" event.
+void uiNodeMonitor_OnUiMouseEvent(UiEventInfo eventInfo)
+{
+	//Append the event info to an "imaginary" string variable called "LogText". 
+	//The idea is to notice the information contained in the "eventInfo" parameter.
+		LogText += "OnMonitorMouseEvent fired : hwnd: " + eventInfo.targetWindow.hWnd + 
+					", x1: " + eventInfo.position.left + ", y1: " + eventInfo.position.top + 
+					", x2:" + eventInfo.position.right + ", y2: " + eventInfo.position.bottom + "\r\n");
+	//In case you started more than one monitor, you can compare the "okBtnMonitorIdentifier" value returned by 
+	//"uiNodeEvents.MonitorClick" with the monitor identifier reported by the "eventInfo.monitorId" property and make some 
+	//decisions.
+		if(okBtnMonitorIdentifier == eventInfo.monitorId)
+		{
+			<...>
+		}
+}
+
+public StopMonitoring()
+{
+	//Detach the event callback.
+		uiNodeEvents.OnUiMouse -= uiNodeMonitor_OnUiMouseEvent;
+	//Stop monitoring the "OK" button by passing the identifier returned by "uiNodeEvents.MonitorClick"...
+		uiNodeEvents.StopMonitor(okBtnMonitorIdentifier);
+	//...OR, you can end all the monitors started by the "uiNodeEvents" object.
+		uiNodeEvents.StopMonitoring();
+}
+```
+		
+### Monitoring a mouse click inside a *Remote Desktop* window
+
+If you are familiar with Remote Desktop terminals, then maybe you thought about automating them too. However, the applications and controls inside such a window cannot be isolated by string selectors. The selector cannot go further into detail beneath the Remote Desktop window, so we will have to use actual screenshots of the controls we want to click on. So, the selector will be used to indicate the "big" Remote Desktop window, and then we will use an image to identify the control we want to monitor. For this example, we will use the same "Font" dialog from Notepad, but this time inside a Remote Desktop window.
+First, we will have to prepare the filtering image for the highlighted "OK" button. In order to have this image, you will place the cursor on the "OK" button in the "Font" dialog to highlight it. Then, you will press the "PrtScr" key on your keyboard to place the screen content into the clipboard. To get the resulting image, open Microsoft Paint, which is included in any Windows distribution (or any other image processing software than you like) and press "Ctrl + V" to paste the screenshot of the Remote Desktop window into the image editor. Crop the "OK" button and create a separate image with it, in PNG, JPG or BMP format. Suppose we have that image in *"C:\Media\Notepad_OK_Btn.PNG"*.
+The final image should look like this (notice the blue accent due to highlighting by the mouse cursor): !["Button screenshot"](/img/blog/notepad_font_ok_btn.png)
+The C# code which monitors the click on the same "OK" button in Notepad, but this time in the Remote Desktop terminal, is this:
+	
+```csharp
+//Import the UiPath library using this line, it must be available as a COM object.
+	using UiPath;
+
+	//The object used to monitor events on specific visual elements.
+		public UiNodeMonitor uiNodeEvents = UiFactory.Instance.NewUiNodeMonitor();
+	//This string selector uniquely identifies the Remote Desktop terminal window on a computer named "OfficePC".
+	//It's pretty long, but if you can see the XML-like structure and the "parent-to-child" path, you'll get it.
+	//For more information on selectors, check the UiPath documentation.
+		public string rdcTerminalSelector = "<wnd app='mstsc.exe' cls='TscShellContainerClass' title='OfficePC - Remote Desktop Connection'/><wnd cls='UIMainClass' title='OfficePC - Remote Desktop Connection' aaname='OfficePC - Remote Desktop Connection'/><wnd cls='IHWindowClass' title='Input Capture Window'/>";
+	//This object will be used to identify the screenshot of the "OK" button.
+		public uiImage = UiFactory.Instance.NewUiImage();
+	//We will hold the identifier of the click monitor in this variable.
+		public int rdcTerminalMonitorIdentifier;
+
+	public StartMonitoring()
+	{
+		//Register for mouse monitoring.
+			uiNodeEvents.OnUiMouse += new IUiEvents_OnUiMouseEventHandler(uiNodeMonitor_OnUiMouseEvent);
+		//Set up the monitoring parameters: "Shift + Left click".
+			UiMouseButton msBtn = UiMouseButton.UI_BTN_LEFT;
+			UiKeyModifier kModif = UiKeyModifier.UI_KEY_Shift;
+			UiEventType   eventType = UiEventType.UI_EVENT_SYNCHRONOUS;
+		//Only match the click on the RDC window, not on its child descendants (it would not make sense anyway, since it
+		//has none).
+			bool matchChildren = false;
+		//Load the filtering image as we saved it earlier on.
+			string imagePath = "C:\\Media\\Notepad_OK_Btn.PNG";
+			uiImage.LoadFile(imagePath);
+		//The accuracy is used to make the matching algorithm more tolerant to rendering anomalies or other small differences 
+		//in the RDC terminal.
+			float matchAccuracy = 0.8;
+		//Start monitoring.
+			rdcTerminalMonitorIdentifier = uiNodeEvents.MonitorClickOnImage(msBtn, kModif, eventType, rdcTerminalSelector, matchChildren, null
+				uiImage, matchAccuracy);
+	}
+
+	//Here is the callback function which UiPath calls to notify our application about the "Shift + Left click" event.
+	void uiNodeMonitor_OnUiMouseEvent(UiEventInfo eventInfo)
+	{
+		//Append the event info to an "imaginary" string variable called "LogText". 
+		//The idea is to notice the information contained in the "eventInfo" parameter.
+			LogText += "OnMonitorMouseEvent fired : hwnd: " + eventInfo.targetWindow.hWnd + 
+						", x1: " + eventInfo.position.left + ", y1: " + eventInfo.position.top + 
+						", x2:" + eventInfo.position.right + ", y2: " + eventInfo.position.bottom + "\r\n");
+	}
+
+	public StopMonitoring()
+	{
+		//Detach the event callback.
+			uiNodeEvents.OnUiMouse -= uiNodeMonitor_OnUiMouseEvent;
+		//End all the monitors.
+			uiNodeEvents.StopMonitoring();
+	}
+```
