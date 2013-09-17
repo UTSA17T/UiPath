@@ -9,6 +9,7 @@ The **UiPath library** is an automation tool which incorporates the ability to c
 input event, such as a mouse click or a keystroke, can be intercepted and a notification will be sent in the form of a COM event.
 
 UiPath offers two kinds of input event monitors: 
+
 1. Global monitors - they notify about the occurence of the specified event in any application.
 2. UI filtering monitors - they report the event when it occurs on a filtered UI area: a visual element, such as a button or a combo box, or even a smaller region inside a visual element.
 
@@ -19,6 +20,7 @@ UiPath offers two kinds of input event monitors:
 
 The UiPath library offers the possibility of monitoring input events throughout all the opened applications in the current desktop.
 This functionality is exported through the **UiSystem interface**, which can monitor the following events:
+
 - Click on any mouse button, with an optional modifier key, such as Ctrl, Shift or Alt, or any combination of them.
   The method which offers this feature is *UiSystem::MonitorClick*.
 - Hovering of the mouse cursor (mouse idling) for a specified amount of time.
@@ -246,6 +248,7 @@ are reported to your application. This way, you can receive mouse clicks on a sp
 control.
 
 You can define the area of event monitoring using these filters:
+
 - UiNode selectors - they are strings which indicate visual elements on the screen. They are mandatory, because we are talking about 
 filtered monitoring and we must have at least one filter.
 - Images inside visual elements - after the selector filter is passed, there is an optional image which can be specified as a filter 
@@ -259,6 +262,7 @@ for reporting mouse clicks. Only clicks on this image inside the element will be
 The programming interface which enables filtered monitoring is called **UiNodeMonitor**.
 
 There are two kinds of UiNode monitors available:
+
 - Synchronous - the original event is blocked from reaching the target application. The event occurence is then reported as a COM event 
 via the event callback. The event callback makes the decision of whether the event will be returned to the original application or not. 
   The main idea of the synchronous event is that the target application should not alter its visual state until we receive and process 
