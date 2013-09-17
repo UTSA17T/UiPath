@@ -74,7 +74,7 @@ For complex scenarios, the recording feature is designed to help you get started
 
 We advise you to review the generated workflow and make any modifications you consider necessary.
 
-You can find [here](https://github.com/Deskover/UiPath/blob/master/Samples/Workflow/RecordingFlash.uiwf) the resulted workflow.
+You can find [here](https://github.com/Deskover/UiPath/tree/master/Samples/Workflow/Workflow%20samples) the resulted workflow.
 
 !["FlashScenario"](/img/blog/FlashScenario.png)
 
