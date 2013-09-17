@@ -64,9 +64,9 @@ UiSystem object.
 As we stated above, the application which monitors input events using UiSystem will receive notifications about these events via 
 *COM events*. This means that you will have to create and attach an event listener.
   
-#### COM events in C\u266F
+#### COM events in C&#x266f;
 
-In C\u266F, creating and attaching COM event listeners for answering the UiSystem events are accomplished like this:
+In C&#x266f;, creating and attaching COM event listeners for answering the UiSystem events are accomplished like this:
 
 ```csharp
 uiSystemEvents.OnUiMouse += new IUiEvents_OnUiMouseEventHandler(UiSystemEvents_OnUiMouseEvent);
@@ -158,12 +158,12 @@ spUiSystem->StopMonitoring();
 
 ### Hints for managed languages
 
-Managed languages, such as C\u266F or VB.NET, use garbage collectors to handle the creation and destruction of objects. The objects are still 
+Managed languages, such as C&#x266f; or VB.NET, use garbage collectors to handle the creation and destruction of objects. The objects are still 
 alive when they go out of scope, they are destroyed by the garbage collector "when needed", which does not guarantee a precise moment 
 when the objects are released from memory. This behaviour can lead to strange errors, such as UiSystem reporting to be *"out of 
 monitoring slots"*. 
 
-So, this C\u266F code:
+So, this C&#x266f; code:
 
 ```csharp
 for(i=0; i<6; ++i)
@@ -196,7 +196,7 @@ for(i=0; i<6; ++i)
 
 ## Case study
 
-Let's take a simple task as an example: monitoring "Ctrl + Right click" in any application. Here is a sample code, written in C\u266F, which 
+Let's take a simple task as an example: monitoring "Ctrl + Right click" in any application. Here is a sample code, written in C&#x266f;, which 
 can accomplish this.
 
 ```csharp
@@ -304,9 +304,9 @@ applications across the system, all the monitoring slots in the system must not 
 Any application which monitors input events using UiNodeMonitor will receive notifications about these events via *COM events*. 
 This means that you will have to create and attach an event listener, as it was the case with UiSystem.
 	
-#### COM events in C\u266F
+#### COM events in C&#x266f;
 
-In C\u266F, creating and attaching COM event listeners for answering the UiNodeMonitor events are accomplished like this:
+In C&#x266f;, creating and attaching COM event listeners for answering the UiNodeMonitor events are accomplished like this:
   
 ```csharp
 uiNodeEvents.OnUiMouse += new IUiEvents_OnUiMouseEventHandler(uiNodeMonitor_OnUiMouseEvent);
@@ -418,7 +418,7 @@ on the "OK" button of this dialog.
 
 We want to catch the click *synchronously*, which means that we will process the click before reaching the Notepad dialog and dismissing it.
 
-Here is a piece of C\u266F code which is meant to accomplish this task:
+Here is a piece of C&#x266f; code which is meant to accomplish this task:
 
 ```csharp
 //Import the UiPath library using this line, it must be available as a COM object.
@@ -495,7 +495,7 @@ the image editor. Crop the "OK" button and create a separate image with it, in P
 The final image should look like this (notice the blue accent due to highlighting by the mouse cursor): 
 !["Button screen shot"](/img/blog/notepad_font_ok_btn.png)
 
-The C\u266F code which monitors the click on the same "OK" button in Notepad, but this time in the Remote Desktop terminal, is this:
+The C&#x266f; code which monitors the click on the same "OK" button in Notepad, but this time in the Remote Desktop terminal, is this:
 	
 ```csharp
 //Import the UiPath library using this line, it must be available as a COM object.
