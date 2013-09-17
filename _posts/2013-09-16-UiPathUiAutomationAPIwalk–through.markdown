@@ -42,12 +42,12 @@ UiPath can perform this magic because it understands the internals of various UI
 
 The most important object of the library is [UiNode](https://github.com/Deskover/UiPath/wiki/Uinode) which represents an object in the UI hierarchy and it can do a lot of things:
 
- + find UI objects on the screen: FromSelector, FromScreenPoint, FromScreenRegion, FromDesktop, FromWindow
- + navigate through the UI tree: Child, FindFirst, FindAll, Parent, TopParent
- + simulate user actions: Click, Hover, WriteText, SetFocus
- + scrape the text or image of UI objects: Scrape, Screenshot
- + get/set attributes of the UI objects: Get, Set
- + inject scripts into web pages and extract HTMl data: InjectAndRunJS, ExtractData
+ + find UI objects on the screen: [FromSelector](https://github.com/Deskover/UiPath/wiki/Uinode#wiki-FromSelector), [FromScreenPoint](https://github.com/Deskover/UiPath/wiki/Uinode#wiki-FromScreenPoint), [FromScreenRegion](https://github.com/Deskover/UiPath/wiki/Uinode#wiki-FromScreenRegion), [FromDesktop](https://github.com/Deskover/UiPath/wiki/Uinode#wiki-FromDesktop), [FromWindow](https://github.com/Deskover/UiPath/wiki/Uinode#wiki-FromWindow)
+ + navigate through the UI tree: [Child](https://github.com/Deskover/UiPath/wiki/Uinode#wiki-Child), [FindFirst](https://github.com/Deskover/UiPath/wiki/Uinode#wiki-FindFirst), [FindAll](https://github.com/Deskover/UiPath/wiki/Uinode#wiki-FindAll), [Parent](https://github.com/Deskover/UiPath/wiki/Uinode#wiki-Parent), [TopParent](https://github.com/Deskover/UiPath/wiki/Uinode#wiki-TopParent)
+ + simulate user actions: [Click](https://github.com/Deskover/UiPath/wiki/Uinode#wiki-Click), [Hover](https://github.com/Deskover/UiPath/wiki/Uinode#wiki-Hover ), [WriteText](https://github.com/Deskover/UiPath/wiki/Uinode#wiki-WriteText), [SetFocus](https://github.com/Deskover/UiPath/wiki/Uinode#wiki-SetFocus)
+ + scrape the text or image of UI objects: [Scrape](https://github.com/Deskover/UiPath/wiki/Uinode#wiki-Scrape), [Screenshot](https://github.com/Deskover/UiPath/wiki/Uinode#wiki-Screenshot)
+ + get/set attributes of the UI objects: [Get](https://github.com/Deskover/UiPath/wiki/Uinode#wiki-Get), [Set](https://github.com/Deskover/UiPath/wiki/Uinode#wiki-Set)
+ + inject scripts into web pages and extract HTMl data: [InjectAndRunJS](https://github.com/Deskover/UiPath/wiki/Uinode#wiki-InjectAndRunJS), [ExtractData](https://github.com/Deskover/UiPath/wiki/Uinode#wiki-ExtractData)
 
 ##Selector
 
@@ -67,18 +67,18 @@ For these special scenarios UiPath provides image-based GUI automation and *OCR*
 
 Here’s the pseudo-code of image-based GUI automation:
 
- + instantiate a UiImage object and call LoadFile against the file containing the image of the GUI object
+ + instantiate a [UiImage](https://github.com/Deskover/UiPath/wiki/UiImage) object and call [LoadFile](https://github.com/Deskover/UiPath/wiki/UiImage#wiki-LoadFile) against the file containing the image of the GUI object
  + instantiate a UiNode and use FromSelector to find the top level window of the app to be automated
- + call uiNode.FindImage against the image object at step one and get a UiRegion which represents the coordinates of the UI object on the screen
+ + call [uiNode.FindImage](https://github.com/Deskover/UiPath/wiki/Uinode#wiki-FindImage) against the image object at step one and get a [UiRegion](https://github.com/Deskover/UiPath/wiki/UiRegion) which represents the coordinates of the UI object on the screen
  + having the coordinates we can Click on the GUI object
 
 ##Other library objects
 
 There are several other objects in the library that completes the feature list.
 
- + UiBrowser which provides browser-related functionality like: Start, Navigate, Refresh, Close, WaitPage
- + UiWindow exposes window-related methods like: Move, Maximize, Minimize, Restore, Close, Show, Hide
- + UiSystem provides system-related features like: GetClipboardText, SetClipboardText, RunApplication, CloseApp, Cleanup, GetActiveWindow
+ + [UiBrowser](https://github.com/Deskover/UiPath/wiki/UiBrowser) which provides browser-related functionality like: [Start](https://github.com/Deskover/UiPath/wiki/UiBrowser#wiki-Start), [Navigate](https://github.com/Deskover/UiPath/wiki/UiBrowser#wiki-Navigate), [Refresh](https://github.com/Deskover/UiPath/wiki/UiBrowser#wiki-Refresh), [Close](https://github.com/Deskover/UiPath/wiki/UiBrowser#wiki-Close), [WaitPage](https://github.com/Deskover/UiPath/wiki/UiBrowser#wiki-WaitPage)
+ + [UiWindow](https://github.com/Deskover/UiPath/wiki/UiWindow) exposes window-related methods like: Move, Maximize, Minimize, Restore, Close, Show, Hide
+ + [UiSystem](https://github.com/Deskover/UiPath/wiki/UiSystem) provides system-related features like: [GetClipboardText](https://github.com/Deskover/UiPath/wiki/UiSystem#wiki-GetClipboardText), [SetClipboardText](https://github.com/Deskover/UiPath/wiki/UiSystem#wiki-SetClipboardText), [RunApplication](https://github.com/Deskover/UiPath/wiki/UiSystem#wiki-RunApplication), [CloseApp](https://github.com/Deskover/UiPath/wiki/UiSystem#wiki-CloseApp), [Cleanup](https://github.com/Deskover/UiPath/wiki/UiSystem#wiki-Cleanup), [GetActiveWindow](https://github.com/Deskover/UiPath/wiki/UiSystem#wiki-GetActiveWindow)
 
 ##Event triggers
 
@@ -94,8 +94,8 @@ When the event occurs and all the conditions are satisfied your code will be not
 
 Here are the event-related library objects and methods:
 
- + UiNodeMonitor: MonitorClick, MonitorClickOnImage, MonitorHotkey, StopMonitor
- + UiSystem: MonitorClick, MonitorHover, MonitoryHotkey, StopMonitoring. UiSystem provides global monitoring (not restricted to any GUI object)
+ + [UiNodeMonitor](https://github.com/Deskover/UiPath/wiki/UiNodeMonitor): [MonitorClick](https://github.com/Deskover/UiPath/wiki/UiNodeMonitor#wiki-MonitorClick), [MonitorClickOnImage](https://github.com/Deskover/UiPath/wiki/UiNodeMonitor#wiki-MonitorClickOnImage), [MonitorHotkey](https://github.com/Deskover/UiPath/wiki/UiNodeMonitor#wiki-MonitorHotkey), [StopMonitor](https://github.com/Deskover/UiPath/wiki/UiNodeMonitor#wiki-StopMonitor)
+ + [UiSystem](https://github.com/Deskover/UiPath/wiki/UiSystem): [MonitorClick](https://github.com/Deskover/UiPath/wiki/UiSystem#wiki-MonitorClick), [MonitorHover](https://github.com/Deskover/UiPath/wiki/UiSystem#wiki-MonitorHover), [MonitoryHotkey](https://github.com/Deskover/UiPath/wiki/UiSystem#wiki-MonitorHotkey), [StopMonitoring](https://github.com/Deskover/UiPath/wiki/UiSystem#wiki-StopMonitoring). UiSystem provides global monitoring (not restricted to any GUI object)
 
 [Here](https://github.com/Deskover/UiPath/wiki/Api-documentation#wiki-UI_events) is the full story on UI event triggers.
 
