@@ -110,7 +110,8 @@ Keep in mind that UiPath product is more than only a GUI automation library. Itâ
  + invoke Powershell scripts
  + make HTTP and SOAP calls
  + perform database transactions
- + and much more.
+ + ...and much more.
 
 Until next time,
+
 Adrian.
