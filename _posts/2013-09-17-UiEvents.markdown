@@ -13,7 +13,6 @@ UiPath offers two kinds of input event monitors:
 1. Global monitors - they notify about the occurence of the specified event in any application.
 2. UI filtering monitors - they report the event when it occurs on a filtered UI area: a visual element, such as a button or a combo box, or even a smaller region inside a visual element.
 
-
 # Global event monitors
   
 ## Description
@@ -32,7 +31,6 @@ The UiPath library supports these features together, you can have a monitor for 
 After you are done monitoring, the event interceptors can be stopped using the *UiSystem::StopMonitoring* method. It is recommended 
 that you call it upon application exit.
 
-
 ## Technical details
 
 The event reporting is **synchronous**, which means that the initial event is blocked from reaching the target application. After your 
@@ -41,7 +39,6 @@ prevent it from happening.
 
 The main idea is that the initial event will not alter the state of the target application until you finish processing it in your 
 application.
-
 
 ## Limitations
 
