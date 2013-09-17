@@ -10,8 +10,8 @@ input event, such as a mouse click or a keystroke, can be intercepted and a noti
 
 UiPath offers two kinds of input event monitors: 
 
-1. Global monitors - they notify about the occurrence of the specified event in any application.
-2. UI filtering monitors - they report the event when it occurs on a filtered UI area: a visual element, such as a button or a combo box, or even a smaller region inside a visual element.
+1. **Global monitors** - they notify about the occurrence of the specified event in any application.
+2. **UI filtering monitors** - they report the event when it occurs on a filtered UI area: a visual element, such as a button or a combo box, or even a smaller region inside a visual element.
 
 # Global event monitors
   
@@ -20,13 +20,13 @@ UiPath offers two kinds of input event monitors:
 The UiPath library offers the possibility of monitoring input events throughout all the opened applications in the current desktop.
 This functionality is exported through the **UiSystem interface**, which can monitor the following events:
 
-- Click on any mouse button, with an optional modifier key, such as Ctrl, Shift or Alt, or any combination of them.
+- **Click on any mouse button**, with an optional modifier key, such as Ctrl, Shift or Alt, or any combination of them.
   
   The method which offers this feature is *UiSystem::MonitorClick*.
-- Hovering of the mouse cursor (mouse idling) for a specified amount of time.
+- **Hovering of the mouse cursor** (mouse idle) for a specified amount of time.
   
   The method which enables monitoring mouse hovering is *UiSystem::MonitorHover*.
-- Hot key triggering, with an optional modifier, such as Ctrl/Shift/Alt, or any combination of them.
+- **Hot key triggering**, with an optional modifier, such as Ctrl/Shift/Alt, or any combination of them.
   
   The method that enables you to monitor global hot keys is *UiSystem::MonitorHotkey*
 
@@ -249,13 +249,13 @@ control.
 
 You can define the area of event monitoring using these filters:
 
-- UiNode selectors - they are strings which indicate visual elements on the screen. They are mandatory, because we are talking about 
+- **UiNode selectors** - they are strings which indicate visual elements on the screen. They are mandatory, because we are talking about 
 filtered monitoring and we must have at least one filter.
-- Images inside visual elements - after the selector filter is passed, there is an optional image which can be specified as a filter 
+- **Images inside visual elements** - after the selector filter is passed, there is an optional image which can be specified as a filter 
 for reporting mouse clicks. Only clicks on this image inside the element will be reported.
   
   *Example*: you want to catch a click on the "Save" button in a tool bar, but only when the button is enabled.
-- Regions inside visual elements - this filter is also optional and only applies to mouse click events. It indicates a region inside a visual element (specified by a selector) which will trigger the mouse clicks.
+- **Regions inside visual elements** - this filter is also optional and only applies to mouse click events. It indicates a region inside a visual element (specified by a selector) which will trigger the mouse clicks.
   
   *Example*: you want to catch a click on a big picture control, but only in its upper-left area.
 
@@ -265,20 +265,20 @@ The programming interface which enables filtered monitoring is called **UiNodeMo
 
 There are two kinds of UiNode monitors available:
 
-- Synchronous - the original event is blocked from reaching the target application. The event occurrence is then reported as a COM event 
+- **Synchronous** - the original event is blocked from reaching the target application. The event occurrence is then reported as a COM event 
 via the event callback. The event callback makes the decision of whether the event will be returned to the original application or not. 
   
   The main idea of the synchronous event is that the target application should not alter its visual state until we receive and process 
   the event.
   
   *Example*: you want to process a click on the "OK" button of a dialog box and get some text out of it before it closes.
-- Asynchronous - the original event is permitted to reach the target application. The UiNodeMonitor object will report the event using 
+- **Asynchronous** - the original event is permitted to reach the target application. The UiNodeMonitor object will report the event using 
 *COM events*, but at the time that you receive the notification, the event may have altered the state of the monitored application. 
 Even if the event reporting is asynchronous with respect to the original event, the events are reported in the order they first appeared.
 
 The monitored events can be:
-- Mouse clicks with optional keyboard modifiers - such as "Shift + Left click".
-- Hot key combinations - such as "Ctrl + Enter".
+- **Mouse clicks** with optional keyboard modifiers - such as "Shift + Left click".
+- **Hot key combinations** - such as "Ctrl + Enter".
 
 The monitors can be stopped individually, using the *UiNodeMonitor::StopMonitor(monitor_id)* method, or you can stop all the monitors 
 associated with a specific UiNodeMonitor object by calling the *UiNodeMonitor::StopMonitoring(void)* method.
