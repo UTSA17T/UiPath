@@ -1,6 +1,6 @@
 ---
 layout: layout
-title: "UiPath UiAutomation API walk–through"
+title: "UiPath UiAutomation API walk-through"
 ---
 
 ##Overview
