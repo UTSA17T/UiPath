@@ -16,8 +16,12 @@ fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
     background: transparent
 }
 
-body {
+#body {
     line-height: 1
+	padding-top: 0px;
+	padding-left: 0px;
+	padding-right: 0px;
+	width: 100%;
 }
 
 ol, ul {
@@ -187,8 +191,21 @@ h1, h2, h2, h3, h4 {
     border-bottom: 0px solid rgba(255, 255, 255, 0.9);
 }
 
+@media all and (min-width: 1100px) {
+	#header { width: 998px;	}
+}
+@media all and (min-width: 650px) and (max-width: 1099px) {
+	#header { width: 90%; }
+}
+@media all and (max-width: 649px) {
+	#header { 
+		width: 100%; 
+		padding: 0px 20px; 
+		-moz-box-sizing: border-box; 
+		box-sizing: border-box;
+	}
+}
 #header {
-    width: 998px;
     height: 94px;
     margin: 0px auto;
 }
@@ -402,10 +419,21 @@ span.text_under_link_start_free {
     line-height: 1.1;
 }
 
+@media all and (min-width: 1100px) {
+	.home_content {
+		width: 998px;
+		/*overflow: hidden;*/
+	}
+}
+@media all and (min-width: 650px) and (max-width: 1099px) {
+	.home_content { width: 90%; }
+}
+@media all and (max-width: 649px) {
+	.home_content { width: 100%; }
+}
 .home_content {
-    width: 998px;
-    overflow: hidden;
-    margin: 15px auto 45px;
+	margin: 15px auto 15px;
+	font-family: Ubuntu Palatino;
 }
 
 img.customers {
@@ -423,7 +451,9 @@ img.customers {
 }
 
 .tab_description {
-    width: 996px;
+	width: 100%;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
     min-height: 275px;
     border: 1px solid #CCC;
     background: none #FFF;
