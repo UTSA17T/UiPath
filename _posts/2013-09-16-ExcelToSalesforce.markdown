@@ -35,7 +35,7 @@ The clearest way of doing this is by opening a web page with the Salesforce addr
 logging into the account by typing your username and password and then clicking the contacts tab. 
 These steps can be recorded using *Record* feature which will add the corresponding activities to the workflow. 
 Pretty easy, right? In fact, you can wrap the login actions in a separate workflow and use it anytime you are 
-working with Salesforce.
+working with Salesforce<sup>[\[1\]](#salesforce-workflow)</sup>.
 
 ### Read data from Excel
 
@@ -62,9 +62,26 @@ With this in mind, we add [*Type*](https://github.com/Deskover/UiPath/wiki/Workf
 for each column passing the cell’s value to the correct input control. 
 Having the form filled in, we click ‘Save & New’, waiting for the page to reload so we can go to the next contact. 
 
-These are the steps for one contact. To have all of the contacts created and saved, we’ll put them into a [*Foreach*](http://msdn.microsoft.com/en-us/library/dd647676%28v=vs.100%29.aspx)
+These are the steps for one contact. To have all of the contacts created and saved, we’ll put them into a [*Foreach*](http://msdn.microsoft.com/en-us/library/dd647676%28v=vs.100%29.aspx)<sup>[\[2\]](#salesforce-workflow)</sup>
 activity, which passes each row to our steps. And since every UI operation is done inside the *New Contact page*, we’ll add a [*Within Parent*] (https://github.com/Deskover/UiPath/wiki/Workflow-activities#wiki-WithinUiElement),
 using the returned *UiElement* as the parent for all the activities that work with the contact form. 
+
+<table style="table-layout: fixed; width: 100%; margin: 0.7em 0" id="salesforce-workflow">
+<!--<thead>
+<tr><td colspan=2><span style="display: block; text-align: center"><strong>Repairing selectors in volatile apps</strong></td></tr>
+</thead>-->
+
+<tbody>
+
+<tr>
+<td style="width: 100%; padding: 1%; vertical-align: top"><img src="/img/blog/LoginToSalesforce.jpg" style="margin: auto; display: block"/></td>
+<td style="width: 92%; padding: 1%; vertical-align: top"><img src="/img/blog/InputAllContacts.jpg" style="margin: auto; display: block"/></td>
+</tr>
+
+
+
+</tbody>
+</table>
 
 ##Conclusions
 
@@ -73,6 +90,7 @@ It can be modified to work with other type of entities within different platform
 You can use CSV files, or you can retrieve the data from your email or from another online account.  
 
 All you have to do is run the workflow and enjoy your coffee.
+
 
 Lavinia
 
