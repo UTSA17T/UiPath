@@ -5,9 +5,9 @@ title: "UiExplorer &mdash; the UI and Selectors"
 
 ## What is UiExplorer?
 
-UiExplorer is a tool for (guess what!) inspecting applications' UI hierarchy, for obtaining or improving [selectors]() that [our library]() identifies [UiNodes]() with.
+UiExplorer is a tool for (guess what!) inspecting applications' UI hierarchy, for obtaining or improving [selectors](https://github.com/Deskover/UiPath/wiki/Selector) that [our library](https://github.com/Deskover/UiPath/wiki/UI-Automation-API-reference) identifies [UiNodes](https://github.com/Deskover/UiPath/wiki/Uinode) with.
 
-Most often, the selectors you are working with will have been composed by the [GetSelector]() method of UiNode. 
+Most often, the selectors you are working with will have been composed by the [GetSelector](https://github.com/Deskover/UiPath/wiki/Uinode#wiki-GetSelector) method of UiNode. 
 Just as often, they should be sufficient for your needs, as is the case in apps with static user interface. 
 However, some programs have volatile layout &ndash;because of nodes with unsteady attribute values; such is the case of web-apps, but not only&ndash; that make automatic generation of *reliable* selectors impossible &mdash; GetSelector can't predict how an attribute's value will change along the runtime, or between runs of an app.
 
@@ -18,7 +18,7 @@ We know editing selectors in these cases can be bothersome, if not difficult and
 UiExplorer operates in two modes: *Top-Level* and *Selector-Editing*. 
 
 The Top-Level view is the state that UiExplorer normally starts up in. 
-In it, you can explore the Ui-Tree of apps, and see node values in the Runtime Attributes view. One of its uses is locating nodes that are hard to [select interactively](). 
+In it, you can explore the Ui-Tree of apps, and see node values in the Runtime Attributes view. One of its uses is locating nodes that are hard to [select interactively](https://github.com/Deskover/UiPath/wiki/Uinode#wiki-SelectInteractive). 
 You can go from Selector-Editing mode into Top-Levels using *View &#8594; Top Levels*.
 
 <table style="table-layout: fixed; width: 100%; margin: 0.7em 0">
@@ -41,10 +41,10 @@ You can go from Selector-Editing mode into Top-Levels using *View &#8594; Top Le
 </tbody>
 </table>
 
-The second state is Selector-Editing mode; UiExplorer opens in it when you chose to edit a selector activity property, in [UiWorkflow](). This state allows you to choose which nodes &ndash;in the parent hierarchy of the UiNode of interest&ndash; you want to include in the selector, or to alter some tags' attributes. You can enter Selector-Editing mode in a number of ways:
+The second state is Selector-Editing mode; UiExplorer opens in it when you chose to edit a selector activity property, in [UiPath Studio](https://github.com/Deskover/UiPath/wiki/UiPath-Studio). This state allows you to choose which nodes &ndash;in the parent hierarchy of the UiNode of interest&ndash; you want to include in the selector, or to alter some tags' attributes. You can enter Selector-Editing mode in a number of ways:
 
   * From the Ui-Tree view, for example by double-clicking
-  * Using [interactive selection]() (arrow button in the toolbar)
+  * Using [interactive selection](https://github.com/Deskover/UiPath/wiki/Uinode#wiki-SelectInteractive) (arrow button in the toolbar)
   * Entering a selector in the *Edit Manually* dialog (opened by pressing the pencil button in the toolbar)
 
 In Selector-Editing mode, the Ui-Tree will initially be hidden. You can make it visible using *View &#8594; Show Children*. The Ui-Tree's top-level will be that of the UiNode's *who's selector you are editing*. You can hide the Ui-Tree the same way you opened it (View &#8594; Hide Children).
@@ -64,7 +64,7 @@ I'd like to mention once again, that if you have a selector available, you can s
 ### Adding intermediate tags to a selector
 
 Adding tags is useful when the element you are interested in is hard to identify within the whole app, but easy within the descendants of one of its parents. 
-The example I'm using is taken from UiWorkflow; I'm interested in the name of the start-point of workflows (green highlight in first figure). 
+The example I'm using is taken from UiPath Studio; I'm interested in the name of the start-point of workflows (green highlight in first figure). 
 
 <table style="table-layout: fixed; width: 100%; margin: 0.7em 0">
 <thead>
