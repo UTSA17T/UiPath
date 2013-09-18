@@ -88,14 +88,18 @@ CString GetInvisibleUIControlSelector()
      CComVariant varNode;
      LONG i = 0;
      SafeArrayGetElement(result, &i, &varNode);
-     spCtrl = varNode.pdispVal;
+     CString selector = _T("");
+     if(varNode != nullptr && varNode.vt == VT_DISPATCH)
+     {
+     	spCtrl = varNode.pdispVal;
+     	//the UiNode objects returned when using FindAll don't have their selectors   
+		//defined, so when retrieving them you should use VARIANT_TRUE,
+     	// instead of VARIANT_FALSE,
+      	//even if this may take more time to execute
+      	selector = spCtrl->GetSelector(VARIANT_TRUE);
+     }
      SafeArrayDestroy(result);
-     //the UiNode objects returned when using FindAll don't have their selectors   
-	 //defined, so when retrieving them you should use VARIANT_TRUE,
-     // instead of VARIANT_FALSE,
-      //even if this may take more time to execute
-      CString selector = spCtrl->GetSelector(VARIANT_TRUE);
-      return selector;
+     return selector;
 }
 ```
 
