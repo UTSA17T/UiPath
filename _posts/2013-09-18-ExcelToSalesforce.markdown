@@ -1,6 +1,6 @@
 ---
 layout: layout
-title: "Application Integration activities - scenario"
+title: "Application Integration &mdash; Import Excel scenario"
 ---
 ##Overview
 
@@ -67,19 +67,11 @@ activity, which passes each row to our steps. And since every UI operation is do
 using the returned *UiElement* as the parent for all the activities that work with the contact form. 
 
 <table style="table-layout: fixed; width: 100%; margin: 0.7em 0" id="salesforce-workflow">
-<!--<thead>
-<tr><td colspan=2><span style="display: block; text-align: center"><strong>Repairing selectors in volatile apps</strong></td></tr>
-</thead>-->
-
 <tbody>
-
 <tr>
 <td style="width: 100%; padding: 1%; vertical-align: top"><img src="/img/blog/LoginToSalesforce.jpg" style="margin: auto; display: block"/></td>
 <td style="width: 92%; padding: 1%; vertical-align: top"><img src="/img/blog/InputAllContacts.jpg" style="margin: auto; display: block"/></td>
 </tr>
-
-
-
 </tbody>
 </table>
 
@@ -89,8 +81,9 @@ We now have a workflow that can be used every time you need to update your conta
 It can be modified to work with other type of entities within different platforms. 
 You can use CSV files, or you can retrieve the data from your email or from another online account.  
 
-All you have to do is run the workflow and enjoy your coffee.
+You can find the entire workflow along with its additional resources in the [ImportExcelData](https://github.com/Deskover/UiPath/tree/master/Samples/Workflow/Workflow%20samples) workspace.
 
+All you have to do is run the workflow and enjoy your coffee.
 
 Lavinia
 
