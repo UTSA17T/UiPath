@@ -97,7 +97,7 @@ Here are the event-related library objects and methods:
  + [UiNodeMonitor](https://github.com/Deskover/UiPath/wiki/UiNodeMonitor): [MonitorClick](https://github.com/Deskover/UiPath/wiki/UiNodeMonitor#wiki-MonitorClick), [MonitorClickOnImage](https://github.com/Deskover/UiPath/wiki/UiNodeMonitor#wiki-MonitorClickOnImage), [MonitorHotkey](https://github.com/Deskover/UiPath/wiki/UiNodeMonitor#wiki-MonitorHotkey), [StopMonitor](https://github.com/Deskover/UiPath/wiki/UiNodeMonitor#wiki-StopMonitor)
  + [UiSystem](https://github.com/Deskover/UiPath/wiki/UiSystem): [MonitorClick](https://github.com/Deskover/UiPath/wiki/UiSystem#wiki-MonitorClick), [MonitorHover](https://github.com/Deskover/UiPath/wiki/UiSystem#wiki-MonitorHover), [MonitoryHotkey](https://github.com/Deskover/UiPath/wiki/UiSystem#wiki-MonitorHotkey), [StopMonitoring](https://github.com/Deskover/UiPath/wiki/UiSystem#wiki-StopMonitoring). UiSystem provides global monitoring (not restricted to any GUI object)
 
-[Here](https://github.com/Deskover/UiPath/wiki/Api-documentation#wiki-UI_events) is the full story on UI event triggers.
+[Here](http://doc.uipath.com/2013/09/17/UiEvents.html) is the full story on UI event triggers.
 
 ##Conclusions
 
